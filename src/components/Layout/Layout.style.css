@@ -1,0 +1,37 @@
+main {
+  padding-left: 3.875rem;
+}
+
+.sidebar-right {
+  width: 400px;
+  background-color: #fff0de;
+  min-height: 500px;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .sidebar-right {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  main {
+    padding-left: 99px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  main {
+    padding-left: 99px;
+    padding-right: 390px;
+  }
+}
+.container {
+  /* border: 1px solid red; */
+  width: 100%;
+  margin: 0 auto;
+}

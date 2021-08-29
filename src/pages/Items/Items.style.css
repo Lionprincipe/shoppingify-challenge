@@ -1,0 +1,26 @@
+.items-header {
+  max-width: 784px;
+  padding-top: 28px;
+  margin: 0 auto;
+  padding-bottom: 58px;
+}
+
+.items-header.mobile {
+  display: none;
+}
+
+.items-header h2 {
+  max-width: 452px;
+}
+.items-header h2 strong {
+  color: #f9a109;
+}
+
+@media screen and (max-width: 1200px) {
+  .items-header {
+    display: none;
+  }
+  .items-container {
+    padding-top: 38px;
+  }
+}
