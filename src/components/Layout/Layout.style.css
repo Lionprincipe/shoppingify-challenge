@@ -4,7 +4,6 @@ main {
 
 .sidebar-right {
   width: 400px;
-  background-color: #fff0de;
   min-height: 500px;
   height: 100%;
   position: fixed;
@@ -12,7 +11,7 @@ main {
   top: 0;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1280px) {
   .sidebar-right {
     display: none;
   }
@@ -24,7 +23,7 @@ main {
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
   main {
     padding-left: 99px;
     padding-right: 390px;

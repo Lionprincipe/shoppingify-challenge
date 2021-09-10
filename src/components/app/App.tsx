@@ -1,15 +1,16 @@
 import React from 'react'
 
-import { ItemsPages } from '../../pages'
-import Layout from '../Layout/Layout'
+import { StatisticsPage } from '../../pages'
+import { Layout } from '..'
+import { AddItemForm } from '..'
 
 import './App.style.css'
 
 export function App() {
   return (
     <div className='App mobile'>
-      <Layout>
-        <ItemsPages />
+      <Layout rightSideChildren={<AddItemForm />}>
+        <StatisticsPage />
       </Layout>
     </div>
   )

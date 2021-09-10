@@ -1,5 +1,5 @@
 .sidebar {
-  background: #ffffff;
+  background-color: var(--color-white);
   padding: 19px 10px 34px;
   width: 3.875rem;
   display: flex;
@@ -29,7 +29,7 @@
 .sidebar .nav-item .icon {
   display: block;
   max-width: 20px;
-  fill: #454545;
+  fill: var(--color-dark-grey);
 }
 
 footer {
@@ -46,7 +46,7 @@ button.btn-shopping-card {
   justify-content: center;
   padding: 11px;
   position: relative;
-  background-color: #f9a109;
+  background-color: var(--color-primary);
   border-radius: 50%;
 }
 
@@ -59,7 +59,7 @@ button.btn-shopping-card {
   min-width: 20px;
   font-size: 12px;
   display: inline-block;
-  color: #ffffff;
+  color: var(--color-white);
   transform: translate(30%, -30%);
 }
 
@@ -74,7 +74,7 @@ button.btn-shopping-card {
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
-  background: #eb5757;
+  background-color: var(--color--danger);
   border-radius: 4px;
 }
 

@@ -1,8 +1,14 @@
 import React from 'react'
 import { Sidebar } from '..'
-import './Layout.style.css'
 
-const Layout: React.FC = ({ children }) => {
+import './Layout.style.css'
+type LayoutProps = {
+  rightSideChildren?: React.ReactNode
+}
+export const Layout: React.FC<LayoutProps> = ({
+  children,
+  rightSideChildren,
+}) => {
   return (
     <>
       <Sidebar />
@@ -10,9 +16,9 @@ const Layout: React.FC = ({ children }) => {
       <main className='deskstop'>
         <div className='container'>{children}</div>
       </main>
-      <aside className='sidebar-right'>right sidebar</aside>
+      {rightSideChildren && (
+        <div className='sidebar-right'>{rightSideChildren}</div>
+      )}
     </>
   )
 }
-
-export default Layout

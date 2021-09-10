@@ -2,7 +2,7 @@ import React from 'react'
 
 import './CategoryItems.style.css'
 type CategoryItemsProps = {
-  items: string[]
+  items: { label: string; quantity?: string }[]
   title: string
 }
 
@@ -15,10 +15,13 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({
       <h3 className='category-title'>{title}</h3>
       {items && (
         <ul className='category-list'>
-          {items.map((item, index) => (
-            <li key={item + index}>
+          {items.map(({ label, quantity }, index) => (
+            <li key={label + index}>
               <button className='category-item'>
-                <span>{item}</span>
+                <span className='category-item__label'>{label}</span>
+                {quantity && (
+                  <span className='category-item__quantity'>{quantity}</span>
+                )}
               </button>
             </li>
           ))}

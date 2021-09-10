@@ -1,0 +1,37 @@
+.custom-button {
+  padding: 20px 22px;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 12px;
+  color: var(--color-white);
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.custom-button__basic {
+  background-color: transparent;
+}
+
+.custom-button__primary {
+  background-color: var(--color-primary);
+}
+
+.custom-button__secondary {
+  background-color: var(--color-primary);
+}
+
+.custom-button__info {
+  background-color: var(--color--primary-accent);
+}
+
+.custom-button__flat {
+  background-color: transparent;
+  color: var(--color-text-accent);
+  border: none;
+}
+
+.custom-button__flat:hover {
+  background-color: var(--color-bg-light-grey);
+}

@@ -1,0 +1,24 @@
+.stats__top-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 768px;
+  padding: 52px 24px 0;
+  margin: 0 auto;
+}
+
+.stats__top-item {
+  flex: 0 1 332px;
+}
+@media screen and (max-width: 848px) {
+  .stats__top-container {
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0 auto;
+    min-width: 266px;
+    max-width: 650px;
+  }
+  .stats__top-item {
+    max-width: 600px;
+  }
+}

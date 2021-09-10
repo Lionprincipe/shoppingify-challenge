@@ -1,0 +1,20 @@
+.back-button {
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-primary);
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 35px;
+}
+
+.back-button .icon {
+  fill: currentColor;
+  width: 16px;
+  height: auto;
+  position: absolute;
+  left: 4px;
+  top: 0;
+}

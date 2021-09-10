@@ -8,7 +8,7 @@ import './Sidebar.style.css'
 
 export const Sidebar = () => {
   return (
-    <aside className='sidebar'>
+    <div className='sidebar'>
       <header>
         <LogoIcon className='icon logo-icon' />
       </header>
@@ -32,6 +32,6 @@ export const Sidebar = () => {
           <ShoppingCardIcon className='shopping-icon' />
         </button>
       </footer>
-    </aside>
+    </div>
   )
 }

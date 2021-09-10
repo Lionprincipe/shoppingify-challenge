@@ -1,0 +1,34 @@
+.history-container {
+  margin: 0 auto;
+  max-width: 428px;
+  width: 100%;
+}
+
+.history-container header {
+  padding: 38px 12px 20px;
+  margin: 0 auto;
+}
+
+.history-date {
+  margin-bottom: 30px;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 1.5em;
+  color: var(--color-extra-light);
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1350px),
+  screen and (min-width: 716px) and (max-width: 932px) {
+  .history-container {
+    max-width: 624px;
+  }
+}
+@media screen and (min-width: 932px) and (max-width: 1199px),
+  screen and (min-width: 1350px) {
+  .history-container {
+    max-width: 824px;
+  }
+}

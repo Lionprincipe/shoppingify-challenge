@@ -1,3 +1,24 @@
+:root {
+  --color-primary: #f9a109;
+  --color-primary-light: #f9a10a;
+  --color--primary-accent: #56ccf2;
+  --color-extra-light: #c1c1c4;
+  --color--danger: #eb5757;
+  --color-text-primary: #000000;
+  --color-text-accent: #34333a;
+  --color-text-secondary: #828282;
+
+  --color-text-light: #bdbdbd;
+  --color-bg--primary: #fafafe;
+  --color-bg-secondary: #fff0de;
+  --color-bg-accent: #fff0de;
+  --color-bg-light-grey: #e0e0e0;
+  --color-bg-light-grey2: #e0e0e0;
+  --color-white: #ffffff;
+  --color-burgundy: #80485b;
+  --color-dark-grey: #454545;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,15 +26,19 @@
 }
 
 html {
+  font-family: 'Quicksand', sans-serif;
   font-size: 16px;
+  color: var(--color-text-primary);
 }
+
 body {
-  background: #fafafe;
+  background-color: var(--color-bg--primary);
 }
 
 ul {
   list-style: none;
 }
+
 button {
   background: none;
   border: none;
@@ -23,20 +48,19 @@ button {
   min-width: 375px;
 }
 
-/* .App.mobile > main {
-  padding-left: 62px;
-  padding-top: 38px;
-} */
-
-/* .main-container {
-  border: 1px solid sienna;
-  padding-left: 94px; */
-
 h2 {
   font-family: Quicksand;
   font-style: normal;
   font-weight: bold;
   font-size: 26px;
   line-height: 32px;
-  color: #34333a;
+  color: var(--color-text-accent);
+}
+
+select,
+input,
+textarea {
+  background-color: transparent;
+  border: none;
+  display: block;
 }

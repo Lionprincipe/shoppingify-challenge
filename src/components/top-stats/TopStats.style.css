@@ -1,0 +1,61 @@
+.top-stats__container h2 {
+  padding-bottom: 38px;
+}
+
+.top-stats__item:not(:first-child) {
+  margin-top: 30px;
+}
+
+.top-stats__progress__title {
+  display: flex;
+  font-size: 18px;
+  line-height: 22px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  color: var(--color-text-primary);
+}
+
+.top-stats__progress-bar {
+  position: relative;
+  width: 100%;
+}
+
+.top-stats__progress-bar hr {
+  border: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 4px;
+}
+
+.top-stats__progress-bar hr:before {
+  content: '';
+  position: absolute;
+  height: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 13%;
+  background-color: transparent;
+  content: '';
+  z-index: -1;
+  position: absolute;
+  height: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: inherit;
+}
+
+.top-stats__progress-bar--topitems hr {
+  background-color: var(--color-primary);
+}
+
+.top-stats__progress-bar--topcategories hr {
+  background-color: var(--color--primary-accent);
+}
+
+.top-stats__progress-bar--topcategories hr::before,
+.top-stats__progress-bar hr:before {
+  background-color: var(--color-bg-light-grey);
+}
