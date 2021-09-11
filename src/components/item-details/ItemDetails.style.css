@@ -28,28 +28,22 @@
 }
 
 .item-details__text-field:first-child .item-details__text-field__value {
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 1.5rem;
+  line-height: 1.25em;
 }
 .item-details__text-field__label {
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  margin-bottom: 12px;
-  color: var(--color-text-extra-light);
+  font-size: 0.75rem;
+  line-height: 1.25em;
+  margin-bottom: 1em;
+  color: var(--color-extra-light);
 }
 
 .item-details__text-field__value {
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1.125rem;
+  line-height: 1.22em;
 
   color: var(--color-text-primary);
 }

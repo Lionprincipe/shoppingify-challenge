@@ -1,17 +1,15 @@
 .date-field {
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 0.75rem;
+  line-height: 1.25em;
   display: flex;
   align-items: center;
-  color: var(--color-text-extra-light);
+  color: var(--color-extra-light);
 }
 
 .date-field .icon {
-  fill: var(--color-text-extra-light);
-  width: 18px;
-  height: 20px;
-  margin-right: 14px;
+  fill: var(--color-extra-light);
+  width: 1.125rem;
+  height: 1.25rem;
+  margin-right: 0.875rem;
 }

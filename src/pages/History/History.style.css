@@ -10,12 +10,10 @@
 }
 
 .history-date {
-  margin-bottom: 30px;
-  font-family: Quicksand;
-  font-style: normal;
+  margin-bottom: 2.5em;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 0.75rem;
+  line-height: 1.25em;
   margin-top: 1.5em;
   color: var(--color-extra-light);
 }

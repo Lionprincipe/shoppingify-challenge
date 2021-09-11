@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sidebar } from '..'
+import { SideNavbar } from '..'
 
 import './Layout.style.css'
 type LayoutProps = {
@@ -10,15 +10,16 @@ export const Layout: React.FC<LayoutProps> = ({
   rightSideChildren,
 }) => {
   return (
-    <>
-      <Sidebar />
-
-      <main className='deskstop'>
-        <div className='container'>{children}</div>
+    <div className='layout__container'>
+      <div className='layout__left-sidebar'>
+        <SideNavbar />
+      </div>
+      <main className='layout-main-container'>
+        <div className='layout-main-content__wrapper'>{children}</div>
       </main>
       {rightSideChildren && (
-        <div className='sidebar-right'>{rightSideChildren}</div>
+        <div className='layout__right-sidebar'>{rightSideChildren}</div>
       )}
-    </>
+    </div>
   )
 }

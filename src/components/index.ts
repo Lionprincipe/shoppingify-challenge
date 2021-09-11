@@ -1,5 +1,5 @@
 export * from './app'
-export * from './sidebar'
+export * from './side-navbar/SideNavbar'
 export * from './category-items'
 export * from './history-group/HistoryGroup'
 export * from './item-details/ItemDetails'

@@ -1,11 +1,9 @@
 .custom-button {
-  padding: 20px 22px;
-  font-size: 16px;
-  line-height: 20px;
+  padding: 1.25em 1.375em;
+  font-size: 1rem;
+  line-height: 1.25em;
   border-radius: 12px;
   color: var(--color-white);
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: bold;
   cursor: pointer;
 }

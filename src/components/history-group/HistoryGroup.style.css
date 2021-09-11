@@ -1,15 +1,13 @@
-.history-group-container h3 {
-  font-family: Quicksand;
-  font-style: normal;
+.history-group__container h3 {
   font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  padding-bottom: 18px;
+  font-size: 0.75rem;
+  line-height: 1.25em;
+  padding-bottom: 1.5em;
   color: var(--color-text-primary);
 }
 
-.history-group-container:not(:last-child) {
-  margin-bottom: 54px;
+.history-group__container:not(:last-child) {
+  margin-bottom: 3.375rem;
 }
 
 .history-group__row {
@@ -17,10 +15,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-top: 22px;
-  padding-left: 22px;
-  padding-bottom: 18px;
-  padding-right: 58px;
+  padding: 1.375rem;
+  padding-right: 3.625rem;
   background-color: var(--color-white);
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
@@ -33,13 +29,14 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding-right: 17px;
+  padding-right: 1.06rem;
 }
+
 .forward-illustration .icon {
-  fill: #f9a109;
+  fill: var(--color-primary);
 }
 .history-group__row:not(:last-child) {
-  margin-bottom: 28px;
+  margin-bottom: 1.75rem;
 }
 
 .history-group__row .history-group__row__title {
@@ -49,38 +46,34 @@
 
 .history-group__row__title {
   padding-right: 1em;
-  max-width: 264px;
-  font-family: Quicksand;
-  font-style: normal;
+  max-width: 16.5rem;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1rem;
+  line-height: 1.25em;
 }
 
 .history-group__row__date {
-  margin-right: 26px;
+  margin-right: 1.625rem;
   display: flex;
   align-items: center;
 }
 
 .history-group__row__date .icon {
   fill: var(--color-extra-light);
-  width: 18px;
-  height: 20px;
-  margin-right: 12px;
+  width: 1.125rem;
+  height: 1.25rem;
+  margin-right: 0.75rem;
 }
 
 .history-group__row__flag {
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 0.75rem;
+  line-height: 1.25em;
   color: var(--color--primary-accent);
   border: 1px solid currentColor;
   box-sizing: border-box;
   border-radius: 8px;
-  padding: 4px 8px;
+  padding: 0.33em 0.67em;
 }
 
 .history-group__row__flag--cancelled {
@@ -94,8 +87,8 @@
   }
 
   .history-group__row__date {
-    margin-top: 12px;
-    margin-bottom: 8px;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
     padding-right: 0;
   }
 }

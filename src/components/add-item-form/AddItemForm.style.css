@@ -1,29 +1,27 @@
 .add-item__container {
   height: 100%;
-  padding: 35px 40px 35px 60px;
+  padding: 2.19rem 2.5rem 2.19rem 3.75rem;
   margin-left: auto;
   position: relative;
   max-height: 892px;
 }
 
 .add-item__container h2 {
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 1.5rem;
+  line-height: 1.25em;
   color: var(--color-text-primary);
-  margin-bottom: 34px;
+  margin-bottom: 1.42em;
 }
 
 .form__control-btns {
-  height: 130px;
+  height: 8.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 50px auto 0;
+  margin: 3.125rem auto 0;
 }
 
 .form__control-btns button:first-child {
-  margin-right: 44px;
+  margin-right: 2.75rem;
 }

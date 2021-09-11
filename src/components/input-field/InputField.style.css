@@ -5,17 +5,15 @@
 
 .input-field__label {
   display: inline-block;
-  margin-bottom: 8px;
-  font-family: Quicksand;
-  font-style: normal;
+  margin-bottom: 0.58em;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 0.875em;
+  line-height: 1.21em;
   color: var(--color-text-accent);
 }
 
 .input-field__group__main-element {
-  padding: 22px 18px;
+  padding: 1.375rem 1.125rem;
   width: 100%;
   border: 2px solid #bdbdbd;
   box-sizing: border-box;
@@ -23,7 +21,7 @@
 }
 
 textarea.input-field__group__main-element {
-  min-height: 110px;
+  min-height: 6.875rem;
 }
 
 .input-field__group--has-focus .input-field__group__main-element {
@@ -49,12 +47,10 @@ textarea.input-field__group__main-element {
 }
 
 .input-select__select option {
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-  padding: 12px 22px;
+  font-size: 1.125em;
+  line-height: 1.375em;
+  padding: 0.75em 1.375em;
   color: var(--color-text-secondary);
 }
 
@@ -69,7 +65,7 @@ textarea.input-field__group__main-element {
   right: 0%;
   padding-right: 4px;
   transform: translate(-50%, -50%);
-  font-size: 22px;
+  font-size: 1.375rem;
   color: var(--color-text-secondary);
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './CategoryItems.style.css'
+
 type CategoryItemsProps = {
   items: { label: string; quantity?: string }[]
   title: string

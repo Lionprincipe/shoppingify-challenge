@@ -1,43 +1,56 @@
-.sidebar {
+.side-navbar__container {
   background-color: var(--color-white);
   padding: 19px 10px 34px;
-  width: 3.875rem;
-  display: flex;
-  flex-direction: column;
   min-height: 500px;
+  width: 100%;
   height: 100%;
-  position: fixed;
 }
 
-.logo-icon {
+.side-navbar__logo {
   width: 42px;
   display: block;
   margin: 0 auto;
 }
 
-.sidebar nav {
-  flex-basis: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.side-navbar__nav {
+  height: 100%;
 }
 
-.sidebar .nav-item:not(:last-child) {
+.side-navbar__nav-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.side-navbar__nav-item {
   padding-bottom: 68px;
 }
 
-.sidebar .nav-item .icon {
+.side-navbar__nav-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.side-navbar__nav-item:first-child {
+  margin-bottom: auto;
+  padding-bottom: 0;
+}
+
+.side-navbar__nav-item:last-child {
+  margin-top: auto;
+  padding-bottom: 0;
+}
+
+.side-navbar__nav-item .icon {
   display: block;
   max-width: 20px;
   fill: var(--color-dark-grey);
 }
 
-footer {
-  display: flex;
-  align-items: center;
-}
-
-button.btn-shopping-card {
+.side-navbar__btn-shopping-card {
   display: block;
   width: 42px;
   height: 42px;
@@ -50,20 +63,20 @@ button.btn-shopping-card {
   border-radius: 50%;
 }
 
-.btn-shopping-card span {
+.side-navbar__in-card-number {
   position: absolute;
   top: 0;
   right: 0;
   width: fit-content;
-  padding: 4px;
-  min-width: 20px;
-  font-size: 12px;
+  padding: 0.33em;
+  min-width: 1.67em;
+  font-size: 0.75rem;
   display: inline-block;
   color: var(--color-white);
   transform: translate(30%, -30%);
 }
 
-.btn-shopping-card span:before {
+.side-navbar__in-card-number:before {
   content: '';
   z-index: -1;
   position: absolute;
@@ -76,10 +89,4 @@ button.btn-shopping-card {
   transform: translate(50%, -50%);
   background-color: var(--color--danger);
   border-radius: 4px;
-}
-
-@media screen and (min-width: 600px) {
-  .sidebar {
-    width: 5.875rem;
-  }
 }

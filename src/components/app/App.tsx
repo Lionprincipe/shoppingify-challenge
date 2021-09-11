@@ -8,10 +8,10 @@ import './App.style.css'
 
 export function App() {
   return (
-    <div className='App mobile'>
+    <>
       <Layout rightSideChildren={<AddItemForm />}>
         <StatisticsPage />
       </Layout>
-    </div>
+    </>
   )
 }

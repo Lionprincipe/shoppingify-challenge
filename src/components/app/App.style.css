@@ -17,6 +17,10 @@
   --color-white: #ffffff;
   --color-burgundy: #80485b;
   --color-dark-grey: #454545;
+
+  --left-side-desktop-size: 99px;
+  --left-side-mobile-size: 63px;
+  --right-side-desktop-size: 400px;
 }
 
 * {
@@ -46,14 +50,15 @@ button {
 
 .App {
   min-width: 375px;
+  height: 100%;
+  border: 1px solid red;
 }
 
 h2 {
-  font-family: Quicksand;
-  font-style: normal;
   font-weight: bold;
-  font-size: 26px;
-  line-height: 32px;
+  font-size: 1.625rem;
+  font-style: normal;
+  line-height: 1.23em;
   color: var(--color-text-accent);
 }
 

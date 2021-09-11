@@ -17,7 +17,7 @@ export const HistoryGroup: React.FC<HistoryGroupProps> = ({
   title,
 }) => {
   return (
-    <div className='history-group-container'>
+    <div className='history-group__container'>
       <h3>{title}</h3>
       {records.map(({ title, date, status }) => (
         <div className='history-group__row' key={title}>
