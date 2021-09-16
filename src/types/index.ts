@@ -1,3 +1,15 @@
+export enum IconsRef {
+  Statistics = 'statistics',
+  Logo = 'logo',
+  ShoppingCard = 'shopping__card',
+  Histories = 'histories',
+  Items = 'listItems',
+}
+
+export interface Ipage {
+  name: string
+}
+
 export type TopAccent = 'topcategories' | 'topitems'
 
 export type CategoryItems = {

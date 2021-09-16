@@ -1,10 +1,11 @@
 import { CategoryItems } from '../../components'
 import { BackButton } from '../../components'
 import { DateField } from '../../components/date-field/DateField'
+import { Ipage } from '../../types'
 
 import { heading, date, categoriesItems } from './History.data'
 import './History.style.css'
-export const HistoryPage = () => {
+export const HistoryPage: React.FunctionComponent<Ipage> = () => {
   return (
     <div className='history-container'>
       <header>
