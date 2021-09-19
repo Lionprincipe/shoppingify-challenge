@@ -15,21 +15,22 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({
 }) => {
   const { onShowItemDetails } = useUIContext()
   return (
-    <div className='category-container'>
-      <h3 className='category-title'>{title}</h3>
+    <div className='category-items__container'>
+      <h3 className='category-items__title'>{title}</h3>
       {items && (
-        <ul className='category-list'>
+        <ul className='category-items__list'>
           {items.map(({ label, quantity }, index) => (
             <li
+              className='category-items__list-item'
               key={label + index}
               onClick={() =>
                 onShowItemDetails(RightSideBarScreenNames.SHOW_ITEM_DETAILS)
               }
             >
-              <button className='category-item'>
-                <span className='category-item__label'>{label}</span>
+              <button className='category-items__btn'>
+                <span className='category-items__label'>{label}</span>
                 {quantity && (
-                  <span className='category-item__quantity'>{quantity}</span>
+                  <span className='category-items__quantity'>{quantity}</span>
                 )}
               </button>
             </li>

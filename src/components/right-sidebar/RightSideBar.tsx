@@ -4,14 +4,19 @@ import { useUIContext } from '../../hooks/useUIContext'
 import { RightSideBarScreenNames } from '../../types'
 
 export const RightSideBar = () => {
-  const { onScreenRightSidebar, onBack, onAddItemShow } = useUIContext()
+  const { onScreenRightSidebar, onListShow, onBack, onAddItemShow } =
+    useUIContext()
 
   switch (onScreenRightSidebar) {
     case RightSideBarScreenNames.SHOW_ITEM_DETAILS: {
       return <ItemsDetails onBack={() => onBack(onScreenRightSidebar)} />
     }
     case RightSideBarScreenNames.ADD_ITEM: {
-      return <AddItemForm />
+      return (
+        <AddItemForm
+          onCancelScreenChange={() => onListShow(onScreenRightSidebar)}
+        />
+      )
     }
     case RightSideBarScreenNames.SHOW_CURRENT_SHOPPING_LIST: {
       return (

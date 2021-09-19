@@ -13,7 +13,9 @@ const INITIAL_INPUT_STATE = { name: '', note: '', imageUrl: '', category: '' }
 
 const requiredInputs = inputInfo.filter((el) => !el.optional)
 
-export const AddItemForm = () => {
+export const AddItemForm: React.FC<{ onCancelScreenChange: () => void }> = ({
+  onCancelScreenChange,
+}) => {
   const [inputValues, setInputValues] =
     useState<InputFieldsTypes>(INITIAL_INPUT_STATE)
   const [errors, setErrors] = useState(inputValues)
@@ -79,6 +81,7 @@ export const AddItemForm = () => {
             styleVariation='flat'
             onClick={() => {
               setInputValues(INITIAL_INPUT_STATE)
+              onCancelScreenChange()
             }}
           >
             cancel
