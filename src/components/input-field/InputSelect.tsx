@@ -4,6 +4,7 @@ import { ReactComponent as CloseIcon } from '../../assets/icons/close.svg'
 type InputSelectProps = {
   placeholder: string
   isInputHasFocus: boolean
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void
   handleChange: (value: string) => void
   handleFocus: (hasFocus: boolean) => void
   value: string
@@ -12,6 +13,7 @@ type InputSelectProps = {
 
 export const InputSelect: React.FC<InputSelectProps> = ({
   placeholder,
+  onBlur,
   handleChange,
   handleFocus,
   isInputHasFocus,
@@ -57,7 +59,10 @@ export const InputSelect: React.FC<InputSelectProps> = ({
         className='input-field__group__main-element'
         placeholder={placeholder}
         onFocus={() => handleFocus(true)}
-        onBlur={() => handleFocus(false)}
+        onBlur={(e) => {
+          handleFocus(false)
+          onBlur(e)
+        }}
         onMouseDown={() => {
           handleFocus(true)
           setShowOptions(true)

@@ -6,7 +6,11 @@ import { ReactComponent as AddItemIllustration } from '../../assets/icons/add_it
 import './CardList.style.css'
 import { CardListCategory } from './CardListCategory'
 
-export const CardList = () => {
+type CardListProps = {
+  openAddItemForm: () => void
+}
+
+export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
   const { empty, currentList } = cardListData
   const isEmpty = false
   const { heading, categories } = currentList
@@ -18,7 +22,9 @@ export const CardList = () => {
         </span>
 
         <p className='card-list__add-item__text'>Didn’t find what you need?</p>
-        <button className='card-list__add-item__btn'>Add Item</button>
+        <button onClick={openAddItemForm} className='card-list__add-item__btn'>
+          Add Item
+        </button>
       </div>
       {isEmpty ? (
         <>

@@ -7,6 +7,8 @@ import './InputField.style.css'
 type InputFieldProps = {
   label: string
   type: InputTypes
+  errorMessage: string
+  onErrorCheck?: (value: string) => Promise<void>
   onChange: (value: string) => void
   placeholder: string
   value: string
@@ -17,6 +19,8 @@ type InputFieldProps = {
 export const InputField: React.FC<InputFieldProps> = ({
   type = 'text',
   label,
+  onErrorCheck,
+  errorMessage,
   onChange,
   value,
   options,
@@ -32,6 +36,7 @@ export const InputField: React.FC<InputFieldProps> = ({
         <InputSelect
           value={value}
           handleFocus={setIsInputHasFocus}
+          onBlur={(e) => onErrorCheck && onErrorCheck(e.target.value)}
           handleChange={onChange}
           isInputHasFocus={isInputHasFocus}
           options={options}
@@ -45,8 +50,9 @@ export const InputField: React.FC<InputFieldProps> = ({
           onFocus={() => {
             setIsInputHasFocus(true)
           }}
-          onBlur={() => {
+          onBlur={(e) => {
             setIsInputHasFocus(false)
+            onErrorCheck && onErrorCheck(e.target.value)
           }}
           className={'input-field__group__main-element'}
           name={name}
@@ -67,6 +73,7 @@ export const InputField: React.FC<InputFieldProps> = ({
           }}
           onBlur={(e) => {
             setIsInputHasFocus(false)
+            onErrorCheck && onErrorCheck(e.target.value)
           }}
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -90,6 +97,7 @@ export const InputField: React.FC<InputFieldProps> = ({
         <span className='input-field__label'>{label}</span>
         {input}
       </label>
+      {errorMessage && <p>{errorMessage}</p>}
     </div>
   )
 }

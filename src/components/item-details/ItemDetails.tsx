@@ -5,13 +5,13 @@ import { itemsDetails } from './itemDetails.data'
 import './ItemDetails.style.css'
 
 import { ItemDetailsTextField } from './ItemDetailsTextField'
-export const ItemsDetails = () => {
+export const ItemsDetails: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const { note, name, imageUrl, category } = itemsDetails
   return (
     <div className='item-details__wrapper'>
       <div className='item-details__container'>
         <div>
-          <BackButton />
+          <BackButton onClick={onBack} />
           <picture className='item-details__illustration '>
             {name && imageUrl && <img src={imageUrl} alt={name.value} />}
           </picture>

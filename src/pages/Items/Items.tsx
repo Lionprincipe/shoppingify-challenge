@@ -1,12 +1,13 @@
-import React from 'react'
 import { CategoryItems } from '../../components'
+import { useCategoriesItems } from '../../hooks/useCategoriesItems'
 import { Ipage } from '../../types'
 
-import { items as data, brandLabel, headingText } from './Items.data'
+import { brandLabel, headingText } from './Items.data'
 
 import './Items.style.css'
 
 export const ItemsPages: React.FunctionComponent<Ipage> = () => {
+  const { categoriesItems: data } = useCategoriesItems()
   return (
     <div className='items-container'>
       <header className='items-header'>

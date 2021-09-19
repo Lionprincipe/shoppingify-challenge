@@ -30,6 +30,7 @@
   border: none;
 }
 
-.custom-button__flat:hover {
+.custom-button__flat:hover,
+.custom-button:disabled {
   background-color: var(--color-bg-light-grey);
 }
