@@ -12,8 +12,9 @@ type CardListProps = {
 
 export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
   const { empty, currentList } = cardListData
-  const isEmpty = false
-  const { heading, categories } = currentList
+  const isEmpty = cardListData.currentList.categories.length <= 0
+  const { heading: listName, categories } = currentList
+  console.log({ isEmpty })
   return (
     <div className='card-list__container'>
       <div className='card-list__add-item'>
@@ -33,11 +34,11 @@ export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
         </>
       ) : (
         <div className='card-list__list-info'>
-          <h2>{heading}</h2>
-
-          {categories.map((category) => (
-            <CardListCategory {...category} key={category.title} />
-          ))}
+          <h2>{listName}</h2>
+          {categories &&
+            categories.map((category) => (
+              <CardListCategory {...category} key={category.title} />
+            ))}
         </div>
       )}
     </div>

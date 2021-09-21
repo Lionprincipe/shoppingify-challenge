@@ -1,20 +1,34 @@
 import { createContext } from 'react'
-
-export interface ShoppingListItem {
-  id: string
-  date: string
-  title: string
-  status: 'completed' | 'ongoing' | 'cancelled'
-}
+import { ShoppingListDispatchType } from './shopping-list.action-types'
 
 export interface ShoppingListType {
-  shoppingLists: ShoppingListItem[]
-  addShoppingList?: () => void
-  updateShoppingList?: () => void
-  removeShoppingList?: () => void
-  deleteShoppingList?: () => void
+  id: string
+  name: string
+  status: 'cancelled' | 'completed' | 'on going'
+  date: string
+  categories: {
+    id: string
+    title: string
+    items: {
+      id: string
+      name: string
+      quantity: number
+      checked: boolean
+    }[]
+  }[]
 }
 
-export const ShoppingListContext = createContext<ShoppingListType>({
-  shoppingLists: [],
+export interface ShoppingListStateType {
+  currentShoppingList: ShoppingListType | {}
+  shoppingListHistory: ShoppingListType[]
+}
+
+export interface ShoppingListTypeContext {
+  shoppingList: ShoppingListStateType
+  dispatch: ShoppingListDispatchType
+}
+
+export const ShoppingListContext = createContext<ShoppingListTypeContext>({
+  shoppingList: { currentShoppingList: {}, shoppingListHistory: [] },
+  dispatch: () => {},
 })

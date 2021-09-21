@@ -2,8 +2,8 @@ import { useContext } from 'react'
 import { ShoppingListContext } from '../contexts/shopping-list/shopping-list.context'
 
 export const useShoppingHistory = () => {
-  const { shoppingLists } = useContext(ShoppingListContext)
-  return getMonthlyListHistory(shoppingLists)
+  const { shoppingList } = useContext(ShoppingListContext)
+  return getMonthlyListHistory(shoppingList.shoppingListHistory)
 }
 
 function getMonthlyListHistory<T extends { date: string }>(
