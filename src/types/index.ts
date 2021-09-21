@@ -5,13 +5,15 @@ export interface Ipage {
 export type TopAccent = 'topcategories' | 'topitems'
 
 export interface ListItem {
-  label: string
+  note?: string
+  imageUrl?: string
   quantity?: string
-  id?: string
+  id: string
+  label: string
 }
 
-export interface CategoryItems {
-  id?: string
+export interface CategoryItemsType {
+  id: string
   title: string
   items: ListItem[]
 }

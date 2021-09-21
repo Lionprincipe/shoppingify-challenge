@@ -1,12 +1,13 @@
+import { UIPayloadType } from '.'
 import { UIContextType } from '../../contexts/UI/ui.context'
 import { RightSideBarScreenNames } from '../../types'
 import { UIActionsTypes } from './UI.actionType'
 
 export function UIReducer(
   state: Omit<UIContextType, 'dispatch'>,
-  action: { type: UIActionsTypes; payload: RightSideBarScreenNames }
+  action: { type: UIActionsTypes; payload: UIPayloadType }
 ) {
-  const { type } = action
+  const { type, payload } = action
   switch (type) {
     case UIActionsTypes.GO_BACK_SIDEBAR_HISTORY: {
       const { UI } = state
@@ -25,7 +26,7 @@ export function UIReducer(
         UI: {
           ...UI,
           onScreenHistory: [
-            RightSideBarScreenNames.SHOW_CURRENT_SHOPPING_LIST,
+            { screenName: RightSideBarScreenNames.SHOW_CURRENT_SHOPPING_LIST },
             ...UI.onScreenHistory,
           ],
         },
@@ -38,7 +39,10 @@ export function UIReducer(
         UI: {
           ...UI,
           onScreenHistory: [
-            RightSideBarScreenNames.SHOW_ITEM_DETAILS,
+            {
+              screenName: RightSideBarScreenNames.SHOW_ITEM_DETAILS,
+              options: payload.options,
+            },
             ...UI.onScreenHistory,
           ],
         },
@@ -51,7 +55,7 @@ export function UIReducer(
         UI: {
           ...UI,
           onScreenHistory: [
-            RightSideBarScreenNames.ADD_ITEM,
+            { screenName: RightSideBarScreenNames.ADD_ITEM },
             ...UI.onScreenHistory,
           ],
         },

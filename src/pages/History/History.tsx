@@ -15,8 +15,13 @@ export const HistoryPage: React.FunctionComponent<Ipage> = () => {
           <DateField date={date} />
         </div>
       </header>
-      {categoriesItems.map(({ title, items }) => (
-        <CategoryItems title={title} items={items} key={title} />
+      {categoriesItems.map(({ id: categoryId, title, items }) => (
+        <CategoryItems
+          categoryId={categoryId}
+          title={title}
+          items={items}
+          key={categoryId}
+        />
       ))}
     </div>
   )

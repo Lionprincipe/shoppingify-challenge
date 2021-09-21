@@ -1,10 +1,10 @@
 import { createContext } from 'react'
 
 import { CategoriesItemsDispatchType } from './categories-items.actions-type'
-import { CategoryItems } from '../../types'
+import { CategoryItemsType } from '../../types'
 
 export interface CategoriesItemsType {
-  categoriesItems: CategoryItems[]
+  categoriesItems: CategoryItemsType[]
   dispatch: CategoriesItemsDispatchType
 }
 export const CategoriesItemsContext = createContext<CategoriesItemsType>({

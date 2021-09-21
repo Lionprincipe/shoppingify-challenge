@@ -15,8 +15,8 @@ export const ItemsPages: React.FunctionComponent<Ipage> = () => {
           <strong>{brandLabel}</strong> {headingText}
         </h2>
       </header>
-      {data.map(({ title, items }, index) => (
-        <CategoryItems items={items} title={title} key={index} />
+      {data.map(({ id, title, items }) => (
+        <CategoryItems categoryId={id} items={items} title={title} key={id} />
       ))}
     </div>
   )

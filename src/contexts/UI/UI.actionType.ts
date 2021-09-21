@@ -7,7 +7,12 @@ export enum UIActionsTypes {
   GO_BACK_SIDEBAR_HISTORY = 'GO_BACK_SIDEBAR_HISTORY',
 }
 
+export interface UIPayloadType {
+  screenName: RightSideBarScreenNames
+  options?: { categoryId: string; itemId: string }
+}
+
 export type UIDispatchType = React.Dispatch<{
   type: UIActionsTypes
-  payload: RightSideBarScreenNames
+  payload: UIPayloadType
 }>

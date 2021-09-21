@@ -1,17 +1,19 @@
 import React from 'react'
 import { useUIContext } from '../../hooks/useUIContext'
-import { RightSideBarScreenNames } from '../../types'
+import { CategoryItemsType, RightSideBarScreenNames } from '../../types'
 
 import './CategoryItems.style.css'
 
 type CategoryItemsProps = {
-  items: { label: string; quantity?: string }[]
+  categoryId: string
+  items: CategoryItemsType['items']
   title: string
 }
 
 export const CategoryItems: React.FC<CategoryItemsProps> = ({
   items,
   title,
+  categoryId,
 }) => {
   const { onShowItemDetails } = useUIContext()
   return (
@@ -19,12 +21,15 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({
       <h3 className='category-items__title'>{title}</h3>
       {items && (
         <ul className='category-items__list'>
-          {items.map(({ label, quantity }, index) => (
+          {items.map(({ label, quantity, id: itemId }, index) => (
             <li
               className='category-items__list-item'
-              key={label + index}
+              key={`${categoryId}-${index}`}
               onClick={() =>
-                onShowItemDetails(RightSideBarScreenNames.SHOW_ITEM_DETAILS)
+                onShowItemDetails(RightSideBarScreenNames.SHOW_ITEM_DETAILS, {
+                  itemId,
+                  categoryId,
+                })
               }
             >
               <button className='category-items__btn'>

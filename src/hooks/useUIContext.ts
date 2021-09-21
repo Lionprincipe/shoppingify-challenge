@@ -9,9 +9,14 @@ import {
 
 export const useUIContext = () => {
   const { UI, dispatch } = useContext(UIContext)
+  const { screenName, options = {} } =
+    UI.onScreenHistory.length > 0
+      ? UI.onScreenHistory[0]
+      : { screenName: UI.onScreenDefault }
 
   return {
-    onScreenRightSidebar: UI.onScreenHistory[0] || UI.onScreenDefault,
+    onScreenRightSidebar: screenName,
+    options,
     onListShow: showCurrentShoppingList(dispatch),
     onAddItemShow: showAddItemForm(dispatch),
     onShowItemDetails: showItemDetails(dispatch),
