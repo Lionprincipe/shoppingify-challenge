@@ -1,3 +1,4 @@
+import { getRandomImageFromUnplashUrl } from '../../helpers/image-url'
 import { createDataId } from '../../helpers/uuid-generator'
 const imageUrl = 'https://source.unsplash.com/random'
 const note = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem fuga enim officia obcaecati, unde voluptas debitis, non ex asperiores facere, iste deserunt quidem optio nobis numquam maiores repellendus? Nihil, dicta.
@@ -60,10 +61,9 @@ export const initialState = {
     return {
       ...category,
       items: category.items.map((item) => {
-        const keyWords = item.label.split(' ').join(',')
         return {
           ...item,
-          imageUrl: `https://source.unsplash.com/featured/?${keyWords}/300x300`,
+          imageUrl: getRandomImageFromUnplashUrl(item.label),
         }
       }),
     }
