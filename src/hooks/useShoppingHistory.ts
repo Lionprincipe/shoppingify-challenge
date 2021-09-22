@@ -1,11 +1,19 @@
 import { useContext } from 'react'
-import { addItemToCurrentShoppingList } from '../contexts/shopping-list/shopping-list.actions'
+import {
+  addItemToCurrentShoppingList,
+  updateCurrentShoppingListItemQuantity,
+} from '../contexts/shopping-list/shopping-list.actions'
 import { ShoppingListContext } from '../contexts/shopping-list/shopping-list.context'
 
 export const useShoppingHistory = () => {
   const { shoppingList, dispatch } = useContext(ShoppingListContext)
-  addItemToCurrentShoppingList(dispatch)
+  const incrementItemQuantity = (categoryId: string, itemId: string) =>
+    updateCurrentShoppingListItemQuantity(dispatch)(categoryId, itemId)
+  const decrementItemQuantity = (categoryId: string, itemId: string) =>
+    updateCurrentShoppingListItemQuantity(dispatch)(categoryId, itemId, -1)
   return {
+    decrementItemQuantity,
+    incrementItemQuantity,
     currentShoppingList: shoppingList.currentShoppingList,
     addItemToShoppingList: addItemToCurrentShoppingList(dispatch),
     listInfos: getMonthlyListHistory(shoppingList.shoppingListHistory),

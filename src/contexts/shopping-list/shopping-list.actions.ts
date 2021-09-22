@@ -15,8 +15,10 @@ export const addItemToCurrentShoppingList =
       payload: { item, ...category },
     })
 
-export type ShoppingListPayloadType = {
-  item: ShoppingListItemType
-  categoryId: string
-  categoryName: string
-}
+export const updateCurrentShoppingListItemQuantity =
+  (dispatch: ShoppingListDispatchType) =>
+  (categoryId: string, itemId: string, increment?: number) =>
+    dispatch({
+      type: ShoppingListActionsTypes.UPDATE_CURRENT_SHOPING_LIST_ITEM_QUANTITY,
+      payload: { categoryId, itemId, increment },
+    })

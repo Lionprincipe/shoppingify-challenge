@@ -1,7 +1,9 @@
 import produce from 'immer'
 import { createDataId } from '../../helpers/uuid-generator'
-import { ShoppingListActionsTypes } from './shopping-list.action-types'
-import { ShoppingListPayloadType } from './shopping-list.actions'
+import {
+  ActionType,
+  ShoppingListActionsTypes,
+} from './shopping-list.action-types'
 
 import {
   ShoppingCategoryType,
@@ -11,15 +13,11 @@ import {
 } from '.'
 
 export const shoppingListReducer = produce(
-  (
-    state: Omit<ShoppingListTypeContext, 'dispatch'>,
-    action: { type: ShoppingListActionsTypes; payload: ShoppingListPayloadType }
-  ) => {
-    const { type, payload } = action
-    switch (type) {
+  (state: Omit<ShoppingListTypeContext, 'dispatch'>, action: ActionType) => {
+    const currentList = state.shoppingList.currentShoppingList
+    switch (action.type) {
       case ShoppingListActionsTypes.ADD_ITEM_TO_CURRENT_SHOPPING_LIST: {
-        const { categoryId, categoryName, item } = payload
-        const currentList = state.shoppingList.currentShoppingList
+        const { categoryId, categoryName, item } = action.payload
         if (!currentList) {
           state.shoppingList.currentShoppingList = setEmptyCurrentShoppingList(
             categoryId,
@@ -44,6 +42,19 @@ export const shoppingListReducer = produce(
               items: [item],
             })
           }
+        }
+        break
+      }
+      case ShoppingListActionsTypes.UPDATE_CURRENT_SHOPING_LIST_ITEM_QUANTITY: {
+        const { itemId, categoryId, increment = 1 } = action.payload
+        if (!!currentList) {
+          const { indexCategory, indexItem } = getCurrentShoppingListIndexes(
+            currentList.categories,
+            categoryId,
+            itemId
+          )
+          currentList.categories[indexCategory].items[indexItem].quantity +=
+            increment
         }
         break
       }

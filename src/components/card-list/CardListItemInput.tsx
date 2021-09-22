@@ -2,23 +2,23 @@ import React, { useState } from 'react'
 
 type CardListItemInputProps = {
   value: number
+  itemId: string
+  incrementQuantity: (itemId: string) => void
+  decrementQuantity: (itemId: string) => void
   isToggle?: boolean
 }
+
+const DEFAULT_QUANTITY_UNIT = 'pcs'
+
 export const CardListItemInput: React.FC<CardListItemInputProps> = ({
   value = 1,
   isToggle = false,
+  itemId,
+  incrementQuantity,
+  decrementQuantity,
 }) => {
-  const [inputValue, setInputValue] = useState(value)
   const [toggle, setToggle] = useState(isToggle)
 
-  const onMinus = () => {
-    if (inputValue > 0) {
-      setInputValue(inputValue - 1)
-    }
-  }
-  const onPlus = () => {
-    setInputValue(inputValue + 1)
-  }
   const handleExpand = () => {
     setToggle(!toggle)
   }
@@ -32,16 +32,16 @@ export const CardListItemInput: React.FC<CardListItemInputProps> = ({
     >
       <button
         className='item-input__button__minus'
-        onClick={onMinus}
-        disabled={!toggle}
+        onClick={() => decrementQuantity(itemId)}
+        disabled={!toggle || value <= 1}
       />
       <span
         onClick={handleExpand}
         className='item-input__input'
-      >{`${inputValue} pcs`}</span>
+      >{`${value} ${DEFAULT_QUANTITY_UNIT}`}</span>
       <button
         className='item-input__button__plus'
-        onClick={onPlus}
+        onClick={() => incrementQuantity(itemId)}
         disabled={!toggle}
       />
     </div>

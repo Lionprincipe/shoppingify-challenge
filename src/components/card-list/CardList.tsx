@@ -14,7 +14,8 @@ type CardListProps = {
 const EMPTY_CARD_DATA_LABEL = 'No items'
 
 export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
-  const { currentShoppingList } = useShoppingHistory()
+  const { incrementItemQuantity, decrementItemQuantity, currentShoppingList } =
+    useShoppingHistory()
 
   return (
     <div className='card-list__container'>
@@ -38,7 +39,15 @@ export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
           <h2>{currentShoppingList.name}</h2>
           {currentShoppingList.categories &&
             currentShoppingList.categories.map((category) => (
-              <CardListCategory {...category} key={category.id} />
+              <CardListCategory
+                categoryId={category.id}
+                incrementItemQuantity={(categoryId) => (itemId) =>
+                  incrementItemQuantity(categoryId, itemId)}
+                decrementItemQuantity={(categoryId) => (itemId) =>
+                  decrementItemQuantity(categoryId, itemId)}
+                {...category}
+                key={category.id}
+              />
             ))}
         </div>
       )}
