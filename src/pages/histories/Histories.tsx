@@ -10,7 +10,7 @@ import { heading } from './Histories.data'
 import './Histories.style.css'
 
 export const HistoriesPage: React.FunctionComponent<Ipage> = () => {
-  const listInfos = useShoppingHistory()
+  const { listInfos } = useShoppingHistory()
   return (
     <div className='histories-wrapper'>
       <h2 className='histories-heading'>{heading}</h2>

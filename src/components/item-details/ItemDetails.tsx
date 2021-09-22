@@ -1,6 +1,7 @@
 import React from 'react'
 import { BackButton, CustomButton } from '..'
 import { useItemDetails } from '../../hooks/useItemsDetails'
+import { useShoppingHistory } from '../../hooks/useShoppingHistory'
 import { defaultValues } from './itemDetails.data'
 
 import './ItemDetails.style.css'
@@ -17,43 +18,61 @@ export const ItemsDetails: React.FC<ItemsDetailsProps> = ({
   itemId = '',
   categoryId = '',
 }) => {
-  const item = useItemDetails(itemId, categoryId)
+  const itemDetails = useItemDetails(itemId, categoryId)
+  const { addItemToShoppingList } = useShoppingHistory()
+  if (!!itemDetails) {
+    const {
+      item,
+      categoryTitle,
+      shoppingListItemsDetails,
+      shoppingListCategoryDetails,
+    } = itemDetails
 
-  return item ? (
-    <div className='item-details__wrapper'>
-      <div className='item-details__container'>
-        <div>
-          <BackButton onClick={onBack} />
-          <picture className='item-details__illustration '>
-            <img
-              src={item?.imageUrl || defaultValues.imageUrl}
-              alt={item.label || ''}
-            />
-          </picture>
-          <ItemDetailsTextField
-            label={defaultValues.name.label}
-            value={item.label}
-          />
-          {item.note && (
+    return (
+      <div className='item-details__wrapper'>
+        <div className='item-details__container'>
+          <div>
+            <BackButton onClick={onBack} />
+            <picture className='item-details__illustration '>
+              <img
+                src={item?.imageUrl || defaultValues.imageUrl}
+                alt={item.label || ''}
+              />
+            </picture>
             <ItemDetailsTextField
-              label={defaultValues.note.label}
-              value={item.note}
+              label={defaultValues.name.label}
+              value={item.label}
             />
-          )}
-          {
-            <ItemDetailsTextField
-              label={defaultValues.category.label}
-              value={item.categoryTitle}
-            />
-          }
+            {item.note && (
+              <ItemDetailsTextField
+                label={defaultValues.note.label}
+                value={item.note}
+              />
+            )}
+            {
+              <ItemDetailsTextField
+                label={defaultValues.category.label}
+                value={categoryTitle}
+              />
+            }
+          </div>
+        </div>
+        <div className='item-details__control-btns'>
+          <CustomButton styleVariation='flat'>delete</CustomButton>
+          <CustomButton
+            onClick={() =>
+              addItemToShoppingList(
+                shoppingListItemsDetails,
+                shoppingListCategoryDetails
+              )
+            }
+          >
+            add to list
+          </CustomButton>
         </div>
       </div>
-      <div className='item-details__control-btns'>
-        <CustomButton styleVariation='flat'>delete</CustomButton>
-        <CustomButton>add to list</CustomButton>
-      </div>
-    </div>
-  ) : (
-    <p>this item was not found</p>
-  )
+    )
+  } else {
+    return <p>this item was not found</p>
+  }
 }

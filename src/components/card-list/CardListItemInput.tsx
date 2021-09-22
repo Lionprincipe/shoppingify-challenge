@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 type CardListItemInputProps = {
-  value?: number
+  value: number
   isToggle?: boolean
 }
 export const CardListItemInput: React.FC<CardListItemInputProps> = ({

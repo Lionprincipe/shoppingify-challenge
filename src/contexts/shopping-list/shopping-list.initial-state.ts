@@ -3,7 +3,7 @@ import { ShoppingListTypeContext } from './shopping-list.context'
 
 export const initialState: Omit<ShoppingListTypeContext, 'dispatch'> = {
   shoppingList: {
-    currentShoppingList: {},
+    currentShoppingList: null,
     shoppingListHistory: [
       {
         id: createDataId(),

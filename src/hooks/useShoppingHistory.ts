@@ -1,9 +1,15 @@
 import { useContext } from 'react'
+import { addItemToCurrentShoppingList } from '../contexts/shopping-list/shopping-list.actions'
 import { ShoppingListContext } from '../contexts/shopping-list/shopping-list.context'
 
 export const useShoppingHistory = () => {
-  const { shoppingList } = useContext(ShoppingListContext)
-  return getMonthlyListHistory(shoppingList.shoppingListHistory)
+  const { shoppingList, dispatch } = useContext(ShoppingListContext)
+  addItemToCurrentShoppingList(dispatch)
+  return {
+    currentShoppingList: shoppingList.currentShoppingList,
+    addItemToShoppingList: addItemToCurrentShoppingList(dispatch),
+    listInfos: getMonthlyListHistory(shoppingList.shoppingListHistory),
+  }
 }
 
 function getMonthlyListHistory<T extends { date: string }>(

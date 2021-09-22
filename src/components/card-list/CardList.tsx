@@ -1,20 +1,21 @@
 import React from 'react'
-import { cardListData } from './CardList.data'
+
 import { ReactComponent as CardEmptyHolder } from '../../assets/icons/card_holder.svg'
 import { ReactComponent as AddItemIllustration } from '../../assets/icons/add_item_illustration.svg'
 
 import './CardList.style.css'
 import { CardListCategory } from './CardListCategory'
+import { useShoppingHistory } from '../../hooks/useShoppingHistory'
 
 type CardListProps = {
   openAddItemForm: () => void
 }
 
+const EMPTY_CARD_DATA_LABEL = 'No items'
+
 export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
-  const { empty, currentList } = cardListData
-  const isEmpty = cardListData.currentList.categories.length <= 0
-  const { heading: listName, categories } = currentList
-  console.log({ isEmpty })
+  const { currentShoppingList } = useShoppingHistory()
+
   return (
     <div className='card-list__container'>
       <div className='card-list__add-item'>
@@ -27,17 +28,17 @@ export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
           Add Item
         </button>
       </div>
-      {isEmpty ? (
+      {!currentShoppingList ? (
         <>
-          <p className='card-list__empty-message'>{empty.label}</p>
+          <p className='card-list__empty-message'>{EMPTY_CARD_DATA_LABEL}</p>
           <CardEmptyHolder className='card-list__illustration' />
         </>
       ) : (
         <div className='card-list__list-info'>
-          <h2>{listName}</h2>
-          {categories &&
-            categories.map((category) => (
-              <CardListCategory {...category} key={category.title} />
+          <h2>{currentShoppingList.name}</h2>
+          {currentShoppingList.categories &&
+            currentShoppingList.categories.map((category) => (
+              <CardListCategory {...category} key={category.id} />
             ))}
         </div>
       )}

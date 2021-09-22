@@ -4,7 +4,8 @@ import { CardListItemInput } from './CardListItemInput'
 type CardListCategoryProps = {
   title: string
   items: {
-    label: string
+    id: string
+    name: string
     quantity: number
     checked: boolean
   }[]
@@ -18,10 +19,10 @@ export const CardListCategory: React.FC<CardListCategoryProps> = ({
     <div className='card-list__category__container'>
       <h3>{title}</h3>
       <ul className='card-list__category__items'>
-        {items.map(({ label, quantity }) => (
-          <li key={label} className='card-list__category__item'>
+        {items.map(({ id, name: label, quantity }) => (
+          <li key={id} className='card-list__category__item'>
             <span className='card-list__category__item__label'>{label}</span>
-            <CardListItemInput />
+            <CardListItemInput value={quantity} />
           </li>
         ))}
       </ul>

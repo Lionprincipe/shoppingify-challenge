@@ -4,7 +4,7 @@ import { useCategoriesItems } from './useCategoriesItems'
 export const useItemDetails = (itemId: string, categoryId: string) => {
   const { categoriesItems } = useCategoriesItems()
   const item = findItem(categoriesItems, categoryId, itemId)
-  return item
+  return item && { ...item }
 }
 
 function findItem(
@@ -20,8 +20,15 @@ function findItem(
   )
   if (!!item) {
     return {
-      ...item,
+      item,
       categoryTitle: category.title,
+      shoppingListItemsDetails: {
+        id: itemId,
+        name: item.label,
+        quantity: 1,
+        checked: false,
+      },
+      shoppingListCategoryDetails: { categoryId, categoryName: category.title },
     }
   } else {
     return null

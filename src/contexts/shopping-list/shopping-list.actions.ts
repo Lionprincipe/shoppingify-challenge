@@ -1,14 +1,22 @@
-import { InputFieldsTypes } from '../../types'
+import { ShoppingListItemType } from '.'
 import {
   ShoppingListActionsTypes,
   ShoppingListDispatchType,
 } from './shopping-list.action-types'
 
-export const addItemToCategory =
-  (dispatch: ShoppingListDispatchType) => (item: InputFieldsTypes) =>
+export const addItemToCurrentShoppingList =
+  (dispatch: ShoppingListDispatchType) =>
+  (
+    item: ShoppingListItemType,
+    category: { categoryId: string; categoryName: string }
+  ) =>
     dispatch({
-      type: ShoppingListActionsTypes.EDIT_CURRENT_SHOPPING_LIST,
-      payload: null,
+      type: ShoppingListActionsTypes.ADD_ITEM_TO_CURRENT_SHOPPING_LIST,
+      payload: { item, ...category },
     })
 
-export type PayloadType = null
+export type ShoppingListPayloadType = {
+  item: ShoppingListItemType
+  categoryId: string
+  categoryName: string
+}
