@@ -17,7 +17,7 @@
 }
 
 .custom-button__secondary {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
 }
 
 .custom-button__info {

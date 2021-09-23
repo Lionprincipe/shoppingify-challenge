@@ -1,7 +1,7 @@
 import React from 'react'
 import { BackButton, CustomButton } from '..'
 import { useItemDetails } from '../../hooks/useItemsDetails'
-import { useShoppingHistory } from '../../hooks/useShoppingHistory'
+import { useShoppingListContext } from '../../hooks/useShoppingListContext'
 import { defaultValues } from './itemDetails.data'
 
 import './ItemDetails.style.css'
@@ -19,10 +19,11 @@ export const ItemsDetails: React.FC<ItemsDetailsProps> = ({
   categoryId = '',
 }) => {
   const itemDetails = useItemDetails(itemId, categoryId)
-  const { addItemToShoppingList } = useShoppingHistory()
+  const { addItemToShoppingList } = useShoppingListContext()
   if (!!itemDetails) {
     const {
       item,
+      isItemExistInCurrentShoppingList,
       categoryTitle,
       shoppingListItemsDetails,
       shoppingListCategoryDetails,
@@ -60,6 +61,7 @@ export const ItemsDetails: React.FC<ItemsDetailsProps> = ({
         <div className='item-details__control-btns'>
           <CustomButton styleVariation='flat'>delete</CustomButton>
           <CustomButton
+            disabled={isItemExistInCurrentShoppingList}
             onClick={() =>
               addItemToShoppingList(
                 shoppingListItemsDetails,

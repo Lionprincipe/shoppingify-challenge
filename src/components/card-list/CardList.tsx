@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { ReactComponent as CardEmptyHolder } from '../../assets/icons/card_holder.svg'
-import { ReactComponent as AddItemIllustration } from '../../assets/icons/add_item_illustration.svg'
+
+import { useShoppingListContext } from '../../hooks/useShoppingListContext'
+
+import { CardListCategory } from './CardListCategory'
+import { CardListControls } from './CardListControls'
+import { CardListAddItemBox } from './CardListAddItemBox'
+import { CardListInfoHeading } from './CardListInfoHeading'
 
 import './CardList.style.css'
-import { CardListCategory } from './CardListCategory'
-import { useShoppingHistory } from '../../hooks/useShoppingHistory'
 
 type CardListProps = {
   openAddItemForm: () => void
@@ -14,43 +18,57 @@ type CardListProps = {
 const EMPTY_CARD_DATA_LABEL = 'No items'
 
 export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
-  const { incrementItemQuantity, decrementItemQuantity, currentShoppingList } =
-    useShoppingHistory()
+  const [isEditModeToggled, setIsEditModeToggled] = useState(true)
+  const {
+    editCurrentShoppingListName,
+    incrementItemQuantity,
+    decrementItemQuantity,
+    removeItemFn,
+    checkItemFn,
+    currentShoppingList,
+  } = useShoppingListContext()
 
   return (
     <div className='card-list__container'>
-      <div className='card-list__add-item'>
-        <span className='card-list__add-item__illustration'>
-          <AddItemIllustration className='icon' />
-        </span>
+      <div className='card-list__wrapper'>
+        <CardListAddItemBox onAddItem={openAddItemForm} />
+        {!currentShoppingList ? (
+          <>
+            <p className='card-list__empty-message'>{EMPTY_CARD_DATA_LABEL}</p>
+            <CardEmptyHolder className='card-list__illustration' />
+          </>
+        ) : (
+          <div className='card-list__list-info'>
+            <CardListInfoHeading
+              headline={currentShoppingList.name}
+              isModeToggled={isEditModeToggled}
+              modeToggler={setIsEditModeToggled}
+            />
 
-        <p className='card-list__add-item__text'>Didn’t find what you need?</p>
-        <button onClick={openAddItemForm} className='card-list__add-item__btn'>
-          Add Item
-        </button>
+            {currentShoppingList.categories &&
+              currentShoppingList.categories.map((category) => (
+                <CardListCategory
+                  checkItemFn={checkItemFn}
+                  isEditModeToggled={isEditModeToggled}
+                  categoryId={category.id}
+                  removeItemFn={(categoryId) => (itemId) =>
+                    removeItemFn(categoryId, itemId)}
+                  incrementItemQuantity={(categoryId) => (itemId) =>
+                    incrementItemQuantity(categoryId, itemId)}
+                  decrementItemQuantity={(categoryId) => (itemId) =>
+                    decrementItemQuantity(categoryId, itemId)}
+                  {...category}
+                  key={category.id}
+                />
+              ))}
+          </div>
+        )}
       </div>
-      {!currentShoppingList ? (
-        <>
-          <p className='card-list__empty-message'>{EMPTY_CARD_DATA_LABEL}</p>
-          <CardEmptyHolder className='card-list__illustration' />
-        </>
-      ) : (
-        <div className='card-list__list-info'>
-          <h2>{currentShoppingList.name}</h2>
-          {currentShoppingList.categories &&
-            currentShoppingList.categories.map((category) => (
-              <CardListCategory
-                categoryId={category.id}
-                incrementItemQuantity={(categoryId) => (itemId) =>
-                  incrementItemQuantity(categoryId, itemId)}
-                decrementItemQuantity={(categoryId) => (itemId) =>
-                  decrementItemQuantity(categoryId, itemId)}
-                {...category}
-                key={category.id}
-              />
-            ))}
-        </div>
-      )}
+      <CardListControls
+        onSaveName={editCurrentShoppingListName}
+        isCardEmpty={!currentShoppingList}
+        isEditModeToggled={isEditModeToggled}
+      />
     </div>
   )
 }

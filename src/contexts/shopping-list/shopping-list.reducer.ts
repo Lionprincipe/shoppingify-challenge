@@ -6,16 +6,23 @@ import {
 } from './shopping-list.action-types'
 
 import {
-  ShoppingCategoryType,
   ShoppingListItemType,
   ShoppingListType,
   ShoppingListTypeContext,
 } from '.'
+import { getCurrentShoppingListIndexes } from '../../helpers/reducers-fn'
 
 export const shoppingListReducer = produce(
   (state: Omit<ShoppingListTypeContext, 'dispatch'>, action: ActionType) => {
     const currentList = state.shoppingList.currentShoppingList
     switch (action.type) {
+      case ShoppingListActionsTypes.EDIT_CURRENT_SHOPPING_LIST_NAME: {
+        const { name } = action.payload
+        if (!!currentList) {
+          currentList.name = name
+        }
+        break
+      }
       case ShoppingListActionsTypes.ADD_ITEM_TO_CURRENT_SHOPPING_LIST: {
         const { categoryId, categoryName, item } = action.payload
         if (!currentList) {
@@ -45,7 +52,7 @@ export const shoppingListReducer = produce(
         }
         break
       }
-      case ShoppingListActionsTypes.UPDATE_CURRENT_SHOPING_LIST_ITEM_QUANTITY: {
+      case ShoppingListActionsTypes.UPDATE_CURRENT_SHOPPING_LIST_ITEM_QUANTITY: {
         const { itemId, categoryId, increment = 1 } = action.payload
         if (!!currentList) {
           const { indexCategory, indexItem } = getCurrentShoppingListIndexes(
@@ -55,6 +62,36 @@ export const shoppingListReducer = produce(
           )
           currentList.categories[indexCategory].items[indexItem].quantity +=
             increment
+        }
+        break
+      }
+      case ShoppingListActionsTypes.REMOVE_ITEM_FROM_CURRENT_SHOPPING_LIST: {
+        const { itemId, categoryId } = action.payload
+        if (!!currentList) {
+          const { indexCategory, indexItem } = getCurrentShoppingListIndexes(
+            currentList.categories,
+            categoryId,
+            itemId
+          )
+          const items = currentList.categories[indexCategory].items
+          if (items.length === 1) {
+            currentList.categories.splice(indexCategory, 1)
+          } else {
+            currentList.categories[indexCategory].items.splice(indexItem, 1)
+          }
+        }
+        break
+      }
+      case ShoppingListActionsTypes.TOGGLE_CHECKED_ITEM_IN_CURRENT_SHOPPING_LIST_ITEM: {
+        const { itemId, categoryId } = action.payload
+        if (!!currentList) {
+          const { indexCategory, indexItem } = getCurrentShoppingListIndexes(
+            currentList.categories,
+            categoryId,
+            itemId
+          )
+          const item = currentList.categories[indexCategory].items[indexItem]
+          item.checked = !item.checked
         }
         break
       }
@@ -77,21 +114,4 @@ function setEmptyCurrentShoppingList(
     status: 'current',
     categories,
   }
-}
-
-function getCurrentShoppingListIndexes(
-  categories: ShoppingCategoryType[],
-  categoryId: string,
-  itemId: string
-) {
-  const indexCategory = categories.findIndex(
-    (category) => category.id === categoryId
-  )
-
-  let indexItem = -1
-  if (indexCategory > -1) {
-    const items = categories[indexCategory].items
-    indexItem = items.findIndex((el) => el.id === itemId)
-  }
-  return { indexItem, indexCategory }
 }

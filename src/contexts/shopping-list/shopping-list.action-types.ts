@@ -1,9 +1,11 @@
 import { ShoppingListItemType } from '.'
 
 export enum ShoppingListActionsTypes {
-  EDIT_CURRENT_SHOPPING_LIST = 'EDIT_CURRENT_SHOPPING_LIST',
   ADD_ITEM_TO_CURRENT_SHOPPING_LIST = 'ADD_ITEM_TO_CURRENT_SHOPPING_LIST',
-  UPDATE_CURRENT_SHOPING_LIST_ITEM_QUANTITY = 'UPDATE_CURRENT_SHOPING_LIST_ITEM_QUANTITY',
+  EDIT_CURRENT_SHOPPING_LIST_NAME = 'EDIT_CURRENT_SHOPPING_LIST_NAME',
+  UPDATE_CURRENT_SHOPPING_LIST_ITEM_QUANTITY = 'UPDATE_CURRENT_SHOPPING_LIST_ITEM_QUANTITY',
+  REMOVE_ITEM_FROM_CURRENT_SHOPPING_LIST = 'REMOVE_ITEM_FROM_CURRENT_SHOPPING_LIST',
+  TOGGLE_CHECKED_ITEM_IN_CURRENT_SHOPPING_LIST_ITEM = 'TOGGLE_CHECKED_ITEM_IN_CURRENT_SHOPPING_LIST_ITEM ',
 }
 
 interface AddItemToCurrentShoppingListAction {
@@ -15,12 +17,31 @@ interface AddItemToCurrentShoppingListAction {
   }
 }
 
-interface updateCurrentShoppingListItemQuantityAction {
-  type: ShoppingListActionsTypes.UPDATE_CURRENT_SHOPING_LIST_ITEM_QUANTITY
+interface UpdateCurrentShoppingListItemQuantityAction {
+  type: ShoppingListActionsTypes.UPDATE_CURRENT_SHOPPING_LIST_ITEM_QUANTITY
   payload: { categoryId: string; itemId: string; increment?: number }
 }
+
+interface RemoveItemFromCurrentShoppingListAction {
+  type: ShoppingListActionsTypes.REMOVE_ITEM_FROM_CURRENT_SHOPPING_LIST
+  payload: { categoryId: string; itemId: string }
+}
+
+interface ToggleCheckedItemInCurrentShoppingListItemAction {
+  type: ShoppingListActionsTypes.TOGGLE_CHECKED_ITEM_IN_CURRENT_SHOPPING_LIST_ITEM
+  payload: { categoryId: string; itemId: string }
+}
+
+interface EditCurrentShoppingListNameAction {
+  type: ShoppingListActionsTypes.EDIT_CURRENT_SHOPPING_LIST_NAME
+  payload: { name: string }
+}
+
 export type ActionType =
-  | updateCurrentShoppingListItemQuantityAction
+  | UpdateCurrentShoppingListItemQuantityAction
   | AddItemToCurrentShoppingListAction
+  | RemoveItemFromCurrentShoppingListAction
+  | ToggleCheckedItemInCurrentShoppingListItemAction
+  | EditCurrentShoppingListNameAction
 
 export type ShoppingListDispatchType = React.Dispatch<ActionType>

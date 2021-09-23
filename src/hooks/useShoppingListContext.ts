@@ -1,17 +1,29 @@
 import { useContext } from 'react'
 import {
   addItemToCurrentShoppingList,
+  editCurrentShoppingListName,
+  removeItemFromCurrentShoppingList,
+  toggleCheckedItemInCurrentShoppingListItem,
   updateCurrentShoppingListItemQuantity,
 } from '../contexts/shopping-list/shopping-list.actions'
 import { ShoppingListContext } from '../contexts/shopping-list/shopping-list.context'
 
-export const useShoppingHistory = () => {
+export const useShoppingListContext = () => {
   const { shoppingList, dispatch } = useContext(ShoppingListContext)
+
   const incrementItemQuantity = (categoryId: string, itemId: string) =>
     updateCurrentShoppingListItemQuantity(dispatch)(categoryId, itemId)
+
   const decrementItemQuantity = (categoryId: string, itemId: string) =>
     updateCurrentShoppingListItemQuantity(dispatch)(categoryId, itemId, -1)
+
+  const checkItemFn = (categoryId: string) => (itemId: string) =>
+    toggleCheckedItemInCurrentShoppingListItem(dispatch)(categoryId, itemId)
+
   return {
+    editCurrentShoppingListName: editCurrentShoppingListName(dispatch),
+    removeItemFn: removeItemFromCurrentShoppingList(dispatch),
+    checkItemFn,
     decrementItemQuantity,
     incrementItemQuantity,
     currentShoppingList: shoppingList.currentShoppingList,

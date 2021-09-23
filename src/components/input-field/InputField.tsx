@@ -5,9 +5,9 @@ import { InputSelect } from './InputSelect'
 import './InputField.style.css'
 
 type InputFieldProps = {
-  label: string
-  type: InputTypes
-  errorMessage: string
+  label?: string
+  type?: InputTypes
+  errorMessage?: string
   onErrorCheck?: (value: string) => Promise<void>
   onChange: (value: string) => void
   placeholder: string

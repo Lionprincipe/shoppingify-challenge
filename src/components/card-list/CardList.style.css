@@ -1,11 +1,11 @@
 .card-list__container {
+  position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: var(--color-bg-secondary);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-between;
+}
+.card-list__wrapper {
+  min-height: 100%;
   padding-bottom: 8.125rem;
   padding-left: 3rem;
   padding-top: 3.625rem;
@@ -34,11 +34,21 @@
   text-align: center;
 }
 
-.card-list__list-info h2 {
+.card-list__list-info__list-name {
   font-size: 1.5rem;
   line-height: 1.25em;
   color: var(--color-text-accent);
-  padding-bottom: 1.67em;
+  margin-bottom: 1.67em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 0.67em;
+}
+.card-list__list-info_mode-icon {
+  cursor: pointer;
+}
+.card-list__list-info_mode-icon svg:hover {
+  fill: var(--color-primary);
 }
 
 .card-list__add-item {
@@ -86,30 +96,37 @@
   color: var(--color-text-secondary);
 }
 
-.card-list__category__container:not(:last-child) .card-list__category__items {
+.card-list__category__container:not(:last-child) {
   margin-bottom: 52px;
-}
-
-.card-list__category__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .card-list__category__item:not(:last-child) {
   margin-bottom: 16px;
 }
 
+.card-list__input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .card-list__category__item__label {
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.22em;
+  position: relative;
+  display: flex;
+  align-items: center;
   color: var(--color-text-primary);
+}
+
+.card-list__category__item__label input[type='checkbox'] {
+  margin-right: 15px;
 }
 
 .item-input__input {
   display: inline-block;
-
+  cursor: pointer;
   text-align: center;
   background-color: transparent;
   border: 2px solid #f9a109;
@@ -164,7 +181,68 @@
   background-color: transparent;
 }
 
+.item-input__button--hide-btn .item-input__button__delete,
 .item-input__button--hide-btn .item-input__button__plus,
 .item-input__button--hide-btn .item-input__button__minus {
   display: none;
+}
+
+.item-input__button__delete {
+  cursor: pointer;
+  padding: 10px 8px;
+  background: var(--color-primary);
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+
+.item-input__button__delete svg {
+  fill: var(--color-white);
+}
+
+.card-list__illustration {
+  position: absolute;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card-list__controls {
+  width: 100%;
+  height: 130px;
+  position: sticky;
+  top: calc(100vh - 130px);
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--color-white);
+}
+
+.card-list__empty-message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-list__control__input-name {
+  border: 1px solid;
+  display: flex;
+  width: 310px;
+  align-items: center;
+  height: 62px;
+  border: 2px solid var(--color-bg-light-grey);
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+
+.card-list__control__input-name--active {
+  border: 2px solid var(--color-primary);
+}
+
+.card-list__control__input-name input {
+  width: 100%;
+  padding: 22px 18px;
+  outline: none;
 }

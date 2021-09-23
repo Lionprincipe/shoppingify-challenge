@@ -1,10 +1,23 @@
+import { getCurrentShoppingListIndexes } from '../helpers/reducers-fn'
 import { CategoryItemsType, ListItem } from '../types'
 import { useCategoriesItems } from './useCategoriesItems'
+import { useShoppingListContext } from './useShoppingListContext'
 
 export const useItemDetails = (itemId: string, categoryId: string) => {
   const { categoriesItems } = useCategoriesItems()
+  const { currentShoppingList } = useShoppingListContext()
+
+  const { indexItem } = !!currentShoppingList
+    ? getCurrentShoppingListIndexes(
+        currentShoppingList.categories,
+        categoryId,
+        itemId
+      )
+    : { indexItem: -1 }
+  const isItemExistInCurrentShoppingList =
+    !!currentShoppingList && indexItem > -1
   const item = findItem(categoriesItems, categoryId, itemId)
-  return item && { ...item }
+  return item && { ...item, isItemExistInCurrentShoppingList }
 }
 
 function findItem(
