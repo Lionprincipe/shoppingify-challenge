@@ -66,6 +66,7 @@
 }
 
 .history-group__row__flag {
+  text-transform: lowercase;
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 1.25em;

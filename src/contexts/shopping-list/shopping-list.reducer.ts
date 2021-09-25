@@ -11,11 +11,20 @@ import {
   ShoppingListTypeContext,
 } from '.'
 import { getCurrentShoppingListIndexes } from '../../helpers/reducers-fn'
+import { ShoppingListStatus } from '../../types'
 
 export const shoppingListReducer = produce(
   (state: Omit<ShoppingListTypeContext, 'dispatch'>, action: ActionType) => {
     const currentList = state.shoppingList.currentShoppingList
     switch (action.type) {
+      case ShoppingListActionsTypes.MOVE_CURRENT_SHOPPING_LIST_TO_HISTORY: {
+        if (!!currentList) {
+          currentList.status = action.payload
+          state.shoppingList.shoppingListHistory.push(currentList)
+          state.shoppingList.currentShoppingList = null
+        }
+        break
+      }
       case ShoppingListActionsTypes.EDIT_CURRENT_SHOPPING_LIST_NAME: {
         const { name } = action.payload
         if (!!currentList) {
@@ -95,6 +104,17 @@ export const shoppingListReducer = produce(
         }
         break
       }
+      case ShoppingListActionsTypes.COMPLETE_CURRENT_SHOPPING_LIST: {
+        if (!!currentList) {
+          currentList.categories.forEach((category, indexCategory) => {
+            category.items.forEach((_, indexItem) => {
+              currentList.categories[indexCategory].items[indexItem].checked =
+                true
+            })
+          })
+        }
+        break
+      }
       default:
         return state
     }
@@ -111,7 +131,7 @@ function setEmptyCurrentShoppingList(
     id: createDataId(),
     name: '',
     date: 'Mon 16.9.2020',
-    status: 'current',
+    status: ShoppingListStatus.CURRENT,
     categories,
   }
 }

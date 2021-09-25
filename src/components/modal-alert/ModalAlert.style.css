@@ -1,0 +1,50 @@
+.modal-alert__container {
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-alert__container__close {
+  display: none;
+}
+
+.modal-alert__alert-box {
+  position: relative;
+  padding: 30px 30px 30px 38px;
+  background: var(--color-white);
+  border-radius: 24px;
+}
+
+.modal-alert__message {
+  max-width: 410.82px;
+  margin-bottom: 36px;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  margin-right: 30px;
+}
+
+.modal-alert__btns__wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+.modal-alert__close-btn {
+  position: absolute;
+  cursor: pointer;
+  top: 30px;
+  right: 30px;
+  fill: var(--color-text-secondary);
+}
+
+.modal-alert__btns__wrapper > button:not(:last-child) {
+  margin-right: 10px;
+}

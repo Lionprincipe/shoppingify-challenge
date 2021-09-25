@@ -5,6 +5,7 @@ import { UIReducer } from './UI.reducer'
 
 const initialState: Omit<UIContextType, 'dispatch'> = {
   UI: {
+    modals: [],
     onScreenHistory: [],
     onScreenDefault: RightSideBarScreenNames.SHOW_CURRENT_SHOPPING_LIST,
   },

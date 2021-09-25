@@ -1,15 +1,33 @@
 import { useContext } from 'react'
 import {
   addItemToCurrentShoppingList,
+  completeToCurrentShoppingList,
   editCurrentShoppingListName,
+  moveCurrentShoppingListToHistory,
   removeItemFromCurrentShoppingList,
   toggleCheckedItemInCurrentShoppingListItem,
   updateCurrentShoppingListItemQuantity,
 } from '../contexts/shopping-list/shopping-list.actions'
 import { ShoppingListContext } from '../contexts/shopping-list/shopping-list.context'
+import { ShoppingListStatus } from '../types'
+import { useModalAlert } from './useModalAlert'
+const CANCEL_SHOPPING_LIST_ALERT_MESSAGE =
+  'Are you sure that you want to cancel this list'
 
 export const useShoppingListContext = () => {
   const { shoppingList, dispatch } = useContext(ShoppingListContext)
+  const { addModal } = useModalAlert()
+
+  const cancelCurrentShoppingList = () =>
+    addModal({
+      message: CANCEL_SHOPPING_LIST_ALERT_MESSAGE,
+      confirmFn: () => {
+        console.log('CONFIRMED WAS CALL')
+        moveCurrentShoppingListToHistory(dispatch)(ShoppingListStatus.CANCELLED)
+      },
+    })
+  const archiveCurrentShoppingList = () =>
+    moveCurrentShoppingListToHistory(dispatch)(ShoppingListStatus.COMPLETE)
 
   const incrementItemQuantity = (categoryId: string, itemId: string) =>
     updateCurrentShoppingListItemQuantity(dispatch)(categoryId, itemId)
@@ -20,15 +38,25 @@ export const useShoppingListContext = () => {
   const checkItemFn = (categoryId: string) => (itemId: string) =>
     toggleCheckedItemInCurrentShoppingListItem(dispatch)(categoryId, itemId)
 
+  const isCurrentListCompleted =
+    !!shoppingList.currentShoppingList &&
+    shoppingList.currentShoppingList.categories.every((category) =>
+      category.items.every((item) => item.checked === true)
+    )
+
   return {
-    editCurrentShoppingListName: editCurrentShoppingListName(dispatch),
-    removeItemFn: removeItemFromCurrentShoppingList(dispatch),
+    isCurrentListCompleted,
+    currentShoppingList: shoppingList.currentShoppingList,
+    listInfos: getMonthlyListHistory(shoppingList.shoppingListHistory),
+    cancelCurrentShoppingList,
+    archiveCurrentShoppingList,
     checkItemFn,
     decrementItemQuantity,
     incrementItemQuantity,
-    currentShoppingList: shoppingList.currentShoppingList,
+    editCurrentShoppingListName: editCurrentShoppingListName(dispatch),
+    removeItemFn: removeItemFromCurrentShoppingList(dispatch),
     addItemToShoppingList: addItemToCurrentShoppingList(dispatch),
-    listInfos: getMonthlyListHistory(shoppingList.shoppingListHistory),
+    completeCurrentShoppingList: completeToCurrentShoppingList(dispatch),
   }
 }
 

@@ -1,4 +1,5 @@
 import { createContext } from 'react'
+import { ShoppingListStatus } from '../../types'
 import { ShoppingListDispatchType } from './shopping-list.action-types'
 
 export interface ShoppingListItemType {
@@ -16,7 +17,7 @@ export interface ShoppingCategoryType {
 export interface ShoppingListType {
   id: string
   name: string
-  status: 'cancelled' | 'completed' | 'current'
+  status: ShoppingListStatus
   date: string
   categories: ShoppingCategoryType[]
 }

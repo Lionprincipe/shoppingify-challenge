@@ -41,3 +41,15 @@ export enum RightSideBarScreenNames {
   SHOW_ITEM_DETAILS = 'SHOW_ITEMS_DETAILS',
   SHOW_CURRENT_SHOPPING_LIST = 'SHOW_CURRENT_SHOPPING_LIST',
 }
+
+export enum ShoppingListStatus {
+  CURRENT = 'CURRENT',
+  COMPLETE = 'COMPLETED',
+  CANCELLED = 'CANCELLED',
+}
+
+export interface ModalDataType {
+  message: string
+  confirmFn?: () => void
+  cancelFn?: () => void
+}

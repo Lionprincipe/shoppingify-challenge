@@ -1,4 +1,5 @@
 import { ReactComponent as CheckModeIcon } from '../assets/icons/check_list.svg'
+import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_trash.svg'
 import { ReactComponent as EditModeIcon } from '../assets/icons/edit_pencil.svg'
 import { ReactComponent as HistoryIcon } from '../assets/icons/history_icon.svg'
@@ -11,6 +12,9 @@ import { IconsRef } from '../types/icon'
 
 export const useIcon = (iconName: IconsRef) => {
   switch (iconName) {
+    case IconsRef.Close: {
+      return CloseIcon || null
+    }
     case IconsRef.CheckMode: {
       return CheckModeIcon || null
     }

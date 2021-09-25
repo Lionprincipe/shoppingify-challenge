@@ -1,4 +1,5 @@
 import { ShoppingListItemType } from '.'
+import { ShoppingListStatus } from '../../types'
 
 export enum ShoppingListActionsTypes {
   ADD_ITEM_TO_CURRENT_SHOPPING_LIST = 'ADD_ITEM_TO_CURRENT_SHOPPING_LIST',
@@ -6,6 +7,17 @@ export enum ShoppingListActionsTypes {
   UPDATE_CURRENT_SHOPPING_LIST_ITEM_QUANTITY = 'UPDATE_CURRENT_SHOPPING_LIST_ITEM_QUANTITY',
   REMOVE_ITEM_FROM_CURRENT_SHOPPING_LIST = 'REMOVE_ITEM_FROM_CURRENT_SHOPPING_LIST',
   TOGGLE_CHECKED_ITEM_IN_CURRENT_SHOPPING_LIST_ITEM = 'TOGGLE_CHECKED_ITEM_IN_CURRENT_SHOPPING_LIST_ITEM ',
+  'COMPLETE_CURRENT_SHOPPING_LIST' = 'COMPLETE_CURRENT_SHOPPING_LIST',
+  'MOVE_CURRENT_SHOPPING_LIST_TO_HISTORY' = 'MOVE_CURRENT_SHOPPING_LIST_TO_HISTORY',
+}
+
+interface MoveCurrentShoppingListToHistoryAction {
+  type: ShoppingListActionsTypes.MOVE_CURRENT_SHOPPING_LIST_TO_HISTORY
+  payload: ShoppingListStatus
+}
+
+interface CompleteCurrentShoppingListAction {
+  type: ShoppingListActionsTypes.COMPLETE_CURRENT_SHOPPING_LIST
 }
 
 interface AddItemToCurrentShoppingListAction {
@@ -43,5 +55,7 @@ export type ActionType =
   | RemoveItemFromCurrentShoppingListAction
   | ToggleCheckedItemInCurrentShoppingListItemAction
   | EditCurrentShoppingListNameAction
+  | CompleteCurrentShoppingListAction
+  | MoveCurrentShoppingListToHistoryAction
 
 export type ShoppingListDispatchType = React.Dispatch<ActionType>

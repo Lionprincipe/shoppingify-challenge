@@ -1,8 +1,22 @@
 import { ShoppingListItemType } from '.'
+import { ShoppingListStatus } from '../../types'
 import {
   ShoppingListActionsTypes,
   ShoppingListDispatchType,
 } from './shopping-list.action-types'
+
+export const completeToCurrentShoppingList =
+  (dispatch: ShoppingListDispatchType) => () =>
+    dispatch({
+      type: ShoppingListActionsTypes.COMPLETE_CURRENT_SHOPPING_LIST,
+    })
+
+export const moveCurrentShoppingListToHistory =
+  (dispatch: ShoppingListDispatchType) => (status: ShoppingListStatus) =>
+    dispatch({
+      type: ShoppingListActionsTypes.MOVE_CURRENT_SHOPPING_LIST_TO_HISTORY,
+      payload: status,
+    })
 
 export const addItemToCurrentShoppingList =
   (dispatch: ShoppingListDispatchType) =>

@@ -19,6 +19,9 @@
 .custom-button__secondary {
   background-color: var(--color-secondary);
 }
+.custom-button__danger {
+  background-color: var(--color--danger);
+}
 
 .custom-button__info {
   background-color: var(--color--primary-accent);

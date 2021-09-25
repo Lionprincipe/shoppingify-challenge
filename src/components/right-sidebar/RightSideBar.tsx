@@ -9,23 +9,24 @@ export const RightSideBar = () => {
 
   switch (onScreenRightSidebar) {
     case RightSideBarScreenNames.SHOW_ITEM_DETAILS: {
-      return (
-        <ItemsDetails
-          {...options}
-          onBack={() => onBack(onScreenRightSidebar)}
-        />
-      )
+      return <ItemsDetails {...options} onBack={onBack} />
     }
     case RightSideBarScreenNames.ADD_ITEM: {
       return (
         <AddItemForm
-          onCancelScreenChange={() => onListShow(onScreenRightSidebar)}
+          onCancelScreenChange={() =>
+            onListShow(RightSideBarScreenNames.SHOW_CURRENT_SHOPPING_LIST)
+          }
         />
       )
     }
     case RightSideBarScreenNames.SHOW_CURRENT_SHOPPING_LIST: {
       return (
-        <CardList openAddItemForm={() => onAddItemShow(onScreenRightSidebar)} />
+        <CardList
+          openAddItemForm={() =>
+            onAddItemShow(RightSideBarScreenNames.ADD_ITEM)
+          }
+        />
       )
     }
     default:

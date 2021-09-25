@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 import { UIDispatchType } from './UI.actionType'
-import { RightSideBarScreenNames } from '../../types'
+import { ModalDataType, RightSideBarScreenNames } from '../../types'
 
 interface OnScreenHistoryType {
   screenName: RightSideBarScreenNames
@@ -9,6 +9,7 @@ interface OnScreenHistoryType {
 
 export interface UIContextType {
   UI: {
+    modals: ModalDataType[]
     onScreenHistory: OnScreenHistoryType[]
     onScreenDefault: RightSideBarScreenNames
   }
@@ -17,6 +18,7 @@ export interface UIContextType {
 
 export const UIContext = createContext<UIContextType>({
   UI: {
+    modals: [],
     onScreenHistory: [],
     onScreenDefault: RightSideBarScreenNames.SHOW_CURRENT_SHOPPING_LIST,
   },

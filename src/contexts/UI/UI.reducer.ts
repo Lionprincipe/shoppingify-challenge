@@ -1,16 +1,23 @@
 import produce from 'immer'
-import { UIPayloadType } from '.'
 import { UIContextType } from '../../contexts/UI/ui.context'
 import { RightSideBarScreenNames } from '../../types'
-import { UIActionsTypes } from './UI.actionType'
+import { UIActionsTypes, UIActionType } from './UI.actionType'
 
 export const UIReducer = produce(
-  (
-    state: Omit<UIContextType, 'dispatch'>,
-    action: { type: UIActionsTypes; payload: UIPayloadType }
-  ) => {
-    const { type, payload } = action
-    switch (type) {
+  (state: Omit<UIContextType, 'dispatch'>, action: UIActionType) => {
+    switch (action.type) {
+      case UIActionsTypes.ADD_MODAL: {
+        state.UI.modals.unshift(action.payload)
+        break
+      }
+      case UIActionsTypes.REMOVE_MODAL: {
+        if (action.payload && action.payload > -1) {
+          state.UI.modals.splice(action.payload, 1)
+        } else {
+          state.UI.modals.shift()
+        }
+        break
+      }
       case UIActionsTypes.GO_BACK_SIDEBAR_HISTORY: {
         state.UI.onScreenHistory.shift()
         break
@@ -22,9 +29,10 @@ export const UIReducer = produce(
         break
       }
       case UIActionsTypes.SHOW_ITEM_DETAILS: {
+        const { options } = action.payload
         state.UI.onScreenHistory.unshift({
           screenName: RightSideBarScreenNames.SHOW_ITEM_DETAILS,
-          options: payload.options,
+          options,
         })
         break
       }

@@ -1,5 +1,6 @@
 export enum IconsRef {
   Statistics = 'statistics',
+  Close = 'close',
   Logo = 'logo',
   ShoppingCard = 'shopping__card',
   Histories = 'histories',

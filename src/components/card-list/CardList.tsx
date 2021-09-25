@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { ReactComponent as CardEmptyHolder } from '../../assets/icons/card_holder.svg'
 
@@ -20,6 +20,10 @@ const EMPTY_CARD_DATA_LABEL = 'No items'
 export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
   const [isEditModeToggled, setIsEditModeToggled] = useState(true)
   const {
+    isCurrentListCompleted,
+    cancelCurrentShoppingList,
+    archiveCurrentShoppingList,
+    completeCurrentShoppingList,
     editCurrentShoppingListName,
     incrementItemQuantity,
     decrementItemQuantity,
@@ -27,6 +31,11 @@ export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
     checkItemFn,
     currentShoppingList,
   } = useShoppingListContext()
+  useEffect(() => {
+    if (!currentShoppingList) {
+      setIsEditModeToggled(true)
+    }
+  }, [currentShoppingList])
 
   return (
     <div className='card-list__container'>
@@ -65,6 +74,10 @@ export const CardList: React.FC<CardListProps> = ({ openAddItemForm }) => {
         )}
       </div>
       <CardListControls
+        isReadyToArchive={isCurrentListCompleted}
+        onCancel={cancelCurrentShoppingList}
+        handleArchiveCompleted={archiveCurrentShoppingList}
+        onComplete={completeCurrentShoppingList}
         onSaveName={editCurrentShoppingListName}
         isCardEmpty={!currentShoppingList}
         isEditModeToggled={isEditModeToggled}
