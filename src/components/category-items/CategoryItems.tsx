@@ -1,13 +1,25 @@
 import React from 'react'
+import { ShoppingListItemType } from '../../contexts'
 import { useUIContext } from '../../hooks/useUIContext'
-import { CategoryItemsType, RightSideBarScreenNames } from '../../types'
+import { ListItem, RightSideBarScreenNames } from '../../types'
 
 import './CategoryItems.style.css'
 
 type CategoryItemsProps = {
   categoryId: string
-  items: CategoryItemsType['items']
+  items: ListItem[] | ShoppingListItemType[]
   title: string
+}
+
+function getTextFromItem<
+  T extends { label: string },
+  K extends { name: string }
+>(contact: K | T) {
+  if ('label' in contact) {
+    return contact.label
+  } else {
+    return contact.name
+  }
 }
 
 export const CategoryItems: React.FC<CategoryItemsProps> = ({
@@ -21,10 +33,10 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({
       <h3 className='category-items__title'>{title}</h3>
       {items && (
         <ul className='category-items__list'>
-          {items.map(({ label, quantity, id: itemId }, index) => (
+          {items.map(({ quantity, id: itemId, ...others }, index) => (
             <li
               className='category-items__list-item'
-              key={`${categoryId}-${index}`}
+              key={itemId}
               onClick={() =>
                 onShowItemDetails(RightSideBarScreenNames.SHOW_ITEM_DETAILS, {
                   itemId,
@@ -33,7 +45,9 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({
               }
             >
               <button className='category-items__btn'>
-                <span className='category-items__label'>{label}</span>
+                <span className='category-items__label'>
+                  {getTextFromItem(others)}
+                </span>
                 {quantity && (
                   <span className='category-items__quantity'>{quantity}</span>
                 )}

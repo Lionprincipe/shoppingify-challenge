@@ -1,21 +1,28 @@
+import { RouteComponentProps, useParams } from 'react-router-dom'
 import { CategoryItems } from '../../components'
 import { BackButton } from '../../components'
 import { DateField } from '../../components/date-field/DateField'
+import { useHistoryDetails } from '../../hooks/useHistoryDetails'
 import { Ipage } from '../../types'
 
-import { heading, date, categoriesItems } from './History.data'
 import './History.style.css'
-export const HistoryPage: React.FunctionComponent<Ipage> = () => {
-  return (
+
+export const HistoryPage: React.FunctionComponent<
+  Ipage & RouteComponentProps<any>
+> = () => {
+  let { id } = useParams<{ id: string }>()
+  console.log(id)
+  const historyData = useHistoryDetails(id)
+  return !!historyData ? (
     <div className='history-container'>
       <header>
         <BackButton />
-        <h2>{heading}</h2>
+        <h2>{historyData.name}</h2>
         <div className='history-date'>
-          <DateField date={date} />
+          <DateField date={historyData.date} />
         </div>
       </header>
-      {categoriesItems.map(({ id: categoryId, title, items }) => (
+      {historyData.categories.map(({ id: categoryId, title, items }) => (
         <CategoryItems
           categoryId={categoryId}
           title={title}
@@ -24,5 +31,7 @@ export const HistoryPage: React.FunctionComponent<Ipage> = () => {
         />
       ))}
     </div>
+  ) : (
+    <div>params not found</div>
   )
 }
