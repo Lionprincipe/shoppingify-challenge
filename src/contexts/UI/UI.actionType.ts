@@ -2,11 +2,16 @@ import { ModalDataType, RightSideBarScreenNames } from '../../types'
 
 export enum UIActionsTypes {
   ADD_MODAL = 'ADD_MODAL',
+  FLUSH_SIDEBAR_HISTORY = 'FLUSH_SIDEBAR_HISTORY',
   REMOVE_MODAL = 'REMOVE_MODAL',
   SHOW__ADD_ITEM_FORM = 'SHOW__ADD_ITEM_FORM',
   SHOW_ITEM_DETAILS = 'SHOW_ITEM_DETAILS',
   SHOW_CURRENT_SHOPPING_LIST = 'SHOW_CURRENT_SHOPPING_LIST',
   GO_BACK_SIDEBAR_HISTORY = 'GO_BACK_SIDEBAR_HISTORY',
+}
+
+interface FlushSidebarHistoryAction {
+  type: UIActionsTypes.FLUSH_SIDEBAR_HISTORY
 }
 
 interface RemoveModalAction {
@@ -47,6 +52,7 @@ export type UIActionType =
   | ShowAddItemFormAction
   | AddModalAction
   | RemoveModalAction
+  | FlushSidebarHistoryAction
 // export interface UIPayloadType {
 //   screenName: RightSideBarScreenNames
 //   options?: { categoryId: string; itemId: string }

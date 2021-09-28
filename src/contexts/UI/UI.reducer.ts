@@ -18,6 +18,10 @@ export const UIReducer = produce(
         }
         break
       }
+      case UIActionsTypes.FLUSH_SIDEBAR_HISTORY: {
+        state.UI.onScreenHistory = []
+        break
+      }
       case UIActionsTypes.GO_BACK_SIDEBAR_HISTORY: {
         state.UI.onScreenHistory.shift()
         break
@@ -30,6 +34,15 @@ export const UIReducer = produce(
       }
       case UIActionsTypes.SHOW_ITEM_DETAILS: {
         const { options } = action.payload
+        const itemHistoryIndex = state.UI.onScreenHistory.findIndex(
+          (el) =>
+            el.screenName === RightSideBarScreenNames.SHOW_ITEM_DETAILS &&
+            el.options?.categoryId === options?.categoryId &&
+            el.options?.itemId === options?.itemId
+        )
+        if (itemHistoryIndex > -1) {
+          state.UI.onScreenHistory.splice(itemHistoryIndex, 1)
+        }
         state.UI.onScreenHistory.unshift({
           screenName: RightSideBarScreenNames.SHOW_ITEM_DETAILS,
           options,

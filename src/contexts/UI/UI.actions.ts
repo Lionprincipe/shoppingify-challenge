@@ -1,6 +1,9 @@
 import { ModalDataType, RightSideBarScreenNames } from '../../types'
 import { UIActionsTypes, UIDispatchType } from './UI.actionType'
 
+export const flushSidebarHistory = (dispatch: UIDispatchType) => () =>
+  dispatch({ type: UIActionsTypes.FLUSH_SIDEBAR_HISTORY })
+
 export const addModal =
   (dispatch: UIDispatchType) => (payload: ModalDataType) =>
     dispatch({ type: UIActionsTypes.ADD_MODAL, payload })

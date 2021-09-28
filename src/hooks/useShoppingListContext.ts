@@ -9,6 +9,7 @@ import {
   updateCurrentShoppingListItemQuantity,
 } from '../contexts/shopping-list/shopping-list.actions'
 import { ShoppingListContext } from '../contexts/shopping-list/shopping-list.context'
+import { getComparator, stableSort } from '../helpers/stable-sort'
 import { ShoppingListStatus } from '../types'
 import { useModalAlert } from './useModalAlert'
 const CANCEL_SHOPPING_LIST_ALERT_MESSAGE =
@@ -22,7 +23,6 @@ export const useShoppingListContext = () => {
     addModal({
       message: CANCEL_SHOPPING_LIST_ALERT_MESSAGE,
       confirmFn: () => {
-        console.log('CONFIRMED WAS CALL')
         moveCurrentShoppingListToHistory(dispatch)(ShoppingListStatus.CANCELLED)
       },
     })
@@ -63,7 +63,14 @@ export const useShoppingListContext = () => {
 function getMonthlyListHistory<T extends { date: string }>(
   shoppingLists: T[]
 ): { date: string; lists: T[] }[] {
-  return shoppingLists.reduce<{ date: string; lists: T[] }[]>((acc, curr) => {
+  const comparator = getComparator(
+    'desc',
+    'date',
+    formatStringDateToDateTimeStamp
+  )
+  return stableSort(shoppingLists, comparator).reduce<
+    { date: string; lists: T[] }[]
+  >((acc, curr) => {
     const currentDate = formatCurrentDate(curr.date)
     if (acc.some((el: { date: string }) => el.date === currentDate)) {
       return acc
@@ -80,8 +87,8 @@ function parseDateToInt(date: string) {
   const data = date.split('.')
   return {
     day: parseInt(data[data.length - 3]) || 1,
-    month: parseInt(data[data.length - 2]),
-    year: parseInt(data[data.length - 1]),
+    month: parseInt(data[data.length - 2]) || 0,
+    year: parseInt(data[data.length - 1]) || 0,
   }
 }
 
@@ -92,4 +99,9 @@ function formatCurrentDate(date: string) {
     year: 'numeric',
     month: 'long',
   }).format(toDate)
+}
+
+function formatStringDateToDateTimeStamp(date: string) {
+  const { year, month, day } = parseDateToInt(date)
+  return new Date(year, month - 1, day).getTime()
 }

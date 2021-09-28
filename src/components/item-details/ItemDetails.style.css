@@ -3,19 +3,69 @@
   background-color: var(--color-white);
   min-height: 100%;
 }
+
+.item-details__container__header {
+  background-color: var(--color-white);
+  position: sticky;
+  top: 0;
+  padding-top: 25px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  border: 1px so;
+  justify-content: space-between;
+  padding-bottom: 34px;
+}
+
+.item-details__close-btn {
+  cursor: pointer;
+}
+.item-details__close-btn svg {
+  fill: var(--color-primary);
+}
+
 .item-details__container {
   margin: 0px auto;
   max-width: 300px;
-  padding-top: 28px;
 }
+
+.item-details__stacks-box {
+  position: relative;
+  padding: 2px;
+  color: var(--color-primary);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  min-width: 2em;
+  text-align: center;
+  line-height: 1em;
+  border: 2px solid currentColor;
+}
+
+.item-details__stacks-box::before {
+  content: '';
+  position: absolute;
+  border: inherit;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  left: -6px;
+  bottom: -6px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+
 .item-details__container .back-button {
-  margin-bottom: 34px;
+  margin-bottom: 0px;
 }
 
 .item-details__illustration {
+  width: 300px;
   margin-bottom: 54px;
   display: block;
+  height: 220px;
   border-radius: 25px;
+  overflow-y: hidden;
 }
 
 .item-details__illustration img {
@@ -58,6 +108,7 @@
   justify-content: space-evenly;
   background-color: var(--color-white);
 }
+
 .item-details__control-btns button:not(:first-child) {
   margin-left: 24px;
 }

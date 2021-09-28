@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { UIContext } from '../contexts/UI/ui.context'
 import {
+  flushSidebarHistory,
   goBackSideBarHistory,
   showAddItemForm,
   showCurrentShoppingList,
@@ -17,6 +18,8 @@ export const useUIContext = () => {
   return {
     onScreenRightSidebar: screenName,
     options,
+    nbViewsInHistory: UI.onScreenHistory.length,
+    flushSidebarHistory: flushSidebarHistory(dispatch),
     onListShow: showCurrentShoppingList(dispatch),
     onAddItemShow: showAddItemForm(dispatch),
     onShowItemDetails: showItemDetails(dispatch),

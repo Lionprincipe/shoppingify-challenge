@@ -1,25 +1,42 @@
 import React from 'react'
+import { Link, LinkProps } from 'react-router-dom'
 
 import { ReactComponent as BackIcon } from '../../assets/icons/arrow_left.svg'
 import './BackButton.style.css'
 
 type BackButtonProps = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
 > & {
   className?: string
   text?: string
 }
 
-export const BackButton: React.FC<BackButtonProps> = ({
+type LinkBackButtonProps<S = unknown> = LinkProps<S> &
+  React.RefAttributes<HTMLAnchorElement> & {
+    className?: string
+    text?: string
+  }
+
+export const BackButton: React.FC<BackButtonProps | LinkBackButtonProps> = ({
   className,
   text,
   ...otherProps
 }) => {
-  return (
-    <div {...otherProps} className={`back-button ${className || ''}`}>
+  const children = (
+    <>
       <BackIcon className='icon' />
       {text || 'back'}
-    </div>
+    </>
+  )
+
+  return 'to' in otherProps ? (
+    <Link {...otherProps} className={`back-button ${className || ''}`}>
+      {children}
+    </Link>
+  ) : (
+    <button {...otherProps} className={`back-button ${className || ''}`}>
+      {children}
+    </button>
   )
 }

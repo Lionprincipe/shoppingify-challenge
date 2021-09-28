@@ -11,12 +11,12 @@ export const HistoryPage: React.FunctionComponent<
   Ipage & RouteComponentProps<any>
 > = () => {
   let { id } = useParams<{ id: string }>()
-  console.log(id)
   const historyData = useHistoryDetails(id)
+
   return !!historyData ? (
     <div className='history-container'>
       <header>
-        <BackButton />
+        <BackButton to='/histories' />
         <h2>{historyData.name}</h2>
         <div className='history-date'>
           <DateField date={historyData.date} />
