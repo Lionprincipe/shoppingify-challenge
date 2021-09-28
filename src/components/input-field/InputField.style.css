@@ -77,3 +77,10 @@ textarea.input-field__group__main-element {
   background-color: var(--color-bg-light-grey2);
   border-radius: 12px;
 }
+
+.input-field__error-message {
+  color: var(--color--danger);
+}
+.input-field__error-message::before {
+  content: '* ';
+}

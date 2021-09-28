@@ -20,6 +20,12 @@
   position: fixed;
   right: 0;
   top: 0;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.layout__right-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .layout__main-content__wrapper {

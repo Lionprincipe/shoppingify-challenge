@@ -97,7 +97,9 @@ export const InputField: React.FC<InputFieldProps> = ({
         <span className='input-field__label'>{label}</span>
         {input}
       </label>
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && (
+        <p className='input-field__error-message'>{errorMessage}</p>
+      )}
     </div>
   )
 }
