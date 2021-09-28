@@ -9,6 +9,10 @@ import {
   updateCurrentShoppingListItemQuantity,
 } from '../contexts/shopping-list/shopping-list.actions'
 import { ShoppingListContext } from '../contexts/shopping-list/shopping-list.context'
+import {
+  formatCurrentDate,
+  formatStringDateToDateTimeStamp,
+} from '../helpers/date-fns'
 import { getComparator, stableSort } from '../helpers/stable-sort'
 import { ShoppingListStatus } from '../types'
 import { useModalAlert } from './useModalAlert'
@@ -90,27 +94,4 @@ function getMonthlyListHistory<T extends { date: string }>(
       return [...acc, { date: currentDate, lists }]
     }
   }, [])
-}
-
-function parseDateToInt(date: string) {
-  const data = date.split('.')
-  return {
-    day: parseInt(data[data.length - 3]) || 1,
-    month: parseInt(data[data.length - 2]) || 0,
-    year: parseInt(data[data.length - 1]) || 0,
-  }
-}
-
-function formatCurrentDate(date: string) {
-  const { year, month, day } = parseDateToInt(date)
-  const toDate = new Date(year, month - 1, day)
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-  }).format(toDate)
-}
-
-function formatStringDateToDateTimeStamp(date: string) {
-  const { year, month, day } = parseDateToInt(date)
-  return new Date(year, month - 1, day).getTime()
 }

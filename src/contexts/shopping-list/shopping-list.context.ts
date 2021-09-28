@@ -15,6 +15,8 @@ export interface ShoppingCategoryType {
 }
 
 export interface ShoppingListType {
+  createdAt: number
+  completedAt?: number
   id: string
   name: string
   status: ShoppingListStatus

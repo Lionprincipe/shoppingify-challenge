@@ -12,6 +12,7 @@ import {
 } from '.'
 import { getCurrentShoppingListIndexes } from '../../helpers/reducers-fn'
 import { ShoppingListStatus } from '../../types'
+import { fromTimeStampToDateString } from '../../helpers/date-fns'
 
 export const shoppingListReducer = produce(
   (state: Omit<ShoppingListTypeContext, 'dispatch'>, action: ActionType) => {
@@ -106,6 +107,7 @@ export const shoppingListReducer = produce(
       }
       case ShoppingListActionsTypes.COMPLETE_CURRENT_SHOPPING_LIST: {
         if (!!currentList) {
+          currentList.completedAt = Date.now()
           currentList.categories.forEach((category, indexCategory) => {
             category.items.forEach((_, indexItem) => {
               currentList.categories[indexCategory].items[indexItem].checked =
@@ -130,7 +132,8 @@ function setEmptyCurrentShoppingList(
   return {
     id: createDataId(),
     name: '',
-    date: 'Mon 16.9.2020',
+    date: fromTimeStampToDateString(Date.now()),
+    createdAt: Date.now(),
     status: ShoppingListStatus.CURRENT,
     categories,
   }
