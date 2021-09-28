@@ -43,7 +43,11 @@ export const CardListItemInput: React.FC<CardListItemInputProps> = ({
 
   return (
     <div className='card-list__input-group'>
-      <label className='card-list__category__item__label'>
+      <label
+        className={`card-list__category__item__label ${
+          !isEditModeToggled ? 'card-list__category__item__label-checkable' : ''
+        }`}
+      >
         {!isEditModeToggled && (
           <input
             checked={checked}
