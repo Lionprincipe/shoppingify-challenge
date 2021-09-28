@@ -7,9 +7,11 @@ import {
 } from './SideNavBar.data'
 import './SideNavbar.style.css'
 import { Icon } from '../Icon/Icon'
+import { useShoppingListContext } from '../../hooks/useShoppingListContext'
 
 export const SideNavbar: React.FC<{ navLinks?: string[] }> = () => {
   const location = useLocation()
+  const { countItemsInCurrentShoppingList } = useShoppingListContext()
 
   return (
     <div className='side-navbar__container'>
@@ -38,7 +40,11 @@ export const SideNavbar: React.FC<{ navLinks?: string[] }> = () => {
           ))}
           <li className='side-navbar__nav-item'>
             <button className='side-navbar__btn-shopping-card'>
-              <span className='side-navbar__in-card-number'>3</span>
+              {countItemsInCurrentShoppingList > 0 && (
+                <span className='side-navbar__in-card-number'>
+                  {countItemsInCurrentShoppingList}
+                </span>
+              )}
               <Icon
                 iconRef={shopppingCardLinkData.iconRef}
                 className='side-navbar__shopping-icon'

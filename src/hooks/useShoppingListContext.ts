@@ -44,7 +44,12 @@ export const useShoppingListContext = () => {
       category.items.every((item) => item.checked === true)
     )
 
+  const countItemsInCurrentShoppingList = !!shoppingList.currentShoppingList
+    ? countItemsInShoppingList(shoppingList.currentShoppingList.categories)
+    : 0
+
   return {
+    countItemsInCurrentShoppingList,
     isCurrentListCompleted,
     currentShoppingList: shoppingList.currentShoppingList,
     listInfos: getMonthlyListHistory(shoppingList.shoppingListHistory),
@@ -58,6 +63,10 @@ export const useShoppingListContext = () => {
     addItemToShoppingList: addItemToCurrentShoppingList(dispatch),
     completeCurrentShoppingList: completeToCurrentShoppingList(dispatch),
   }
+}
+
+function countItemsInShoppingList<T extends { items: any[] }>(list: T[]) {
+  return list.reduce((count, el) => count + el.items.length, 0)
 }
 
 function getMonthlyListHistory<T extends { date: string }>(
