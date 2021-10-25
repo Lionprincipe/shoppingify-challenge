@@ -4,7 +4,7 @@ import { useCategoriesItems } from './useCategoriesItems'
 import { useShoppingListContext } from './useShoppingListContext'
 
 export const useItemDetails = (itemId: string, categoryId: string) => {
-  const { categoriesItems } = useCategoriesItems()
+  const { categoriesItems, deleteItem } = useCategoriesItems()
   const { currentShoppingList } = useShoppingListContext()
 
   const { indexItem } = !!currentShoppingList
@@ -17,7 +17,13 @@ export const useItemDetails = (itemId: string, categoryId: string) => {
   const isItemExistInCurrentShoppingList =
     !!currentShoppingList && indexItem > -1
   const item = findItem(categoriesItems, categoryId, itemId)
-  return item && { ...item, isItemExistInCurrentShoppingList }
+  return (
+    item && {
+      ...item,
+      isItemExistInCurrentShoppingList,
+      deleteItem: () => deleteItem(itemId, categoryId),
+    }
+  )
 }
 
 function findItem(

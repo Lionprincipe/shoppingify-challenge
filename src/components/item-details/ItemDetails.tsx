@@ -24,8 +24,10 @@ export const ItemsDetails: React.FC<ItemsDetailsProps> = ({
   const itemDetails = useItemDetails(itemId, categoryId)
   const { addItemToShoppingList } = useShoppingListContext()
   const { flushSidebarHistory, nbViewsInHistory } = useUIContext()
+
   if (!!itemDetails) {
     const {
+      deleteItem,
       item,
       isItemExistInCurrentShoppingList,
       categoryTitle,
@@ -72,7 +74,15 @@ export const ItemsDetails: React.FC<ItemsDetailsProps> = ({
           </div>
         </div>
         <div className='item-details__control-btns'>
-          <CustomButton styleVariation='flat'>delete</CustomButton>
+          <CustomButton
+            onClick={() => {
+              deleteItem()
+              onBack()
+            }}
+            styleVariation='flat'
+          >
+            {defaultValues.deleteBtnLabel}
+          </CustomButton>
           <CustomButton
             disabled={isItemExistInCurrentShoppingList}
             onClick={() =>
@@ -82,12 +92,12 @@ export const ItemsDetails: React.FC<ItemsDetailsProps> = ({
               )
             }
           >
-            add to list
+            {defaultValues.addBtnLabel}
           </CustomButton>
         </div>
       </div>
     )
   } else {
-    return <p>this item was not found</p>
+    return <p>{defaultValues.missingItemText}</p>
   }
 }

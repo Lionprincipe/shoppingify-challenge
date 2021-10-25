@@ -11,4 +11,12 @@ export const addItemToCategory =
       payload: item,
     })
 
+export const deleteItemInCategory =
+  (dispatch: CategoriesItemsDispatchType) =>
+  (itemId: string, categoryId: string) =>
+    dispatch({
+      type: CategoriesItemsActionsTypes.DELETE_ITEM_IN_CATEGORY,
+      payload: { itemId, categoryId },
+    })
+
 export type PayloadType = InputFieldsTypes

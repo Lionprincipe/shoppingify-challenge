@@ -1,15 +1,21 @@
 import produce from 'immer'
+
 import { CategoriesItemsType } from '../../contexts/categories-items/categories-items.context'
+
 import { getRandomImageFromUnplashUrl } from '../../helpers/image-url'
 import { createDataId } from '../../helpers/uuid-generator'
+
 import { ListItem } from '../../types'
-import { PayloadType } from './categories-items.actions'
-import { CategoriesItemsActionsTypes } from './categories-items.actions-type'
+
+import {
+  CategoriesItemsActionType,
+  CategoriesItemsActionsTypes,
+} from './categories-items.actions-type'
 
 export const categoriesItemsReducer = produce(
   (
     state: Omit<CategoriesItemsType, 'dispatch'>,
-    action: { type: CategoriesItemsActionsTypes; payload: PayloadType }
+    action: CategoriesItemsActionType
   ) => {
     switch (action.type) {
       case CategoriesItemsActionsTypes.ADD_ITEM_TO_CATEGORY: {
@@ -35,8 +41,26 @@ export const categoriesItemsReducer = produce(
         }
         break
       }
+      case CategoriesItemsActionsTypes.DELETE_ITEM_IN_CATEGORY: {
+        const categoryIndex = state.categoriesItems.findIndex(
+          (category) => category.id === action.payload.categoryId
+        )
+        if (categoryIndex < 0) break
+
+        const category = state.categoriesItems[categoryIndex]
+        const itemIndex = category.items.findIndex(
+          (item) => item.id === action.payload.itemId
+        )
+        if (itemIndex >= 0) {
+          category.items.splice(itemIndex, 1)
+          if (category.items.length === 0) {
+            state.categoriesItems.splice(categoryIndex)
+          }
+        }
+        break
+      }
       default:
-        throw state
+        return state
     }
   }
 )
