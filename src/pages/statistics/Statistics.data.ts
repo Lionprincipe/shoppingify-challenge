@@ -25,3 +25,39 @@ export const statsData = [
     ],
   },
 ]
+
+export const monthlySummary = {
+  headerText: 'Monthly Summary',
+  strockColor: '#F9A109',
+  fillColor: '#FFFFFF',
+  data: [
+    {
+      name: 'January',
+      value: 35,
+    },
+    {
+      name: 'February',
+      value: 123,
+    },
+    {
+      name: 'Mars',
+      value: 32,
+    },
+    {
+      name: 'April',
+      value: 12,
+    },
+    {
+      name: 'May',
+      value: 33,
+    },
+    {
+      name: 'June',
+      value: 10,
+    },
+    {
+      name: 'July',
+      value: 46,
+    },
+  ],
+}
