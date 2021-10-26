@@ -41,7 +41,6 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({
               key={itemId}
               onClick={(e) => {
                 e.preventDefault()
-                console.log('show', itemId)
                 onShowItemDetails(RightSideBarScreenNames.SHOW_ITEM_DETAILS, {
                   itemId,
                   categoryId,

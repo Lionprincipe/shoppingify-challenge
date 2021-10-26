@@ -20,7 +20,6 @@ export const UIProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(UIReducer, initialState)
   const isMobile = !!useIsMobileSizeDetected()
   useEffect(() => {
-    console.log(isMobile)
     const action = isMobile
       ? setMobileDefaultSideBarHistoryAction
       : setDesktopDefaultSideBarHistoryAction
