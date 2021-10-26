@@ -30,19 +30,23 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({
   const { onShowItemDetails } = useUIContext()
   return (
     <div className='category-items__container'>
-      <h3 className='category-items__title'>{title}</h3>
+      <h3 onClick={() => console.log('iaaa')} className='category-items__title'>
+        {title}
+      </h3>
       {items && (
         <ul className='category-items__list'>
           {items.map(({ quantity, id: itemId, ...others }, index) => (
             <li
               className='category-items__list-item'
               key={itemId}
-              onClick={() =>
+              onClick={(e) => {
+                e.preventDefault()
+                console.log('show', itemId)
                 onShowItemDetails(RightSideBarScreenNames.SHOW_ITEM_DETAILS, {
                   itemId,
                   categoryId,
                 })
-              }
+              }}
             >
               <button className='category-items__btn'>
                 <span className='category-items__label'>

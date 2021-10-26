@@ -8,10 +8,12 @@ import {
 import './SideNavbar.style.css'
 import { Icon } from '../Icon/Icon'
 import { useShoppingListContext } from '../../hooks/useShoppingListContext'
+import { useUIContext } from '../../hooks/useUIContext'
 
 export const SideNavbar: React.FC<{ navLinks?: string[] }> = () => {
   const location = useLocation()
   const { countItemsInCurrentShoppingList } = useShoppingListContext()
+  const { mobileNavClearSideView, displayShoppingListCard } = useUIContext()
 
   return (
     <div className='side-navbar__container'>
@@ -20,6 +22,7 @@ export const SideNavbar: React.FC<{ navLinks?: string[] }> = () => {
           <li className='side-navbar__nav-item'>
             <SideNavBarLink
               {...logoLinkData}
+              onClick={mobileNavClearSideView}
               iconClassName='side-navbar__logo'
             />
           </li>
@@ -34,12 +37,16 @@ export const SideNavbar: React.FC<{ navLinks?: string[] }> = () => {
             >
               <SideNavBarLink
                 {...linkData}
+                onClick={mobileNavClearSideView}
                 iconClassName='side-navbar__nav-item__icon'
               />
             </li>
           ))}
           <li className='side-navbar__nav-item'>
-            <button className='side-navbar__btn-shopping-card'>
+            <button
+              className='side-navbar__btn-shopping-card'
+              onClick={displayShoppingListCard}
+            >
               {countItemsInCurrentShoppingList > 0 && (
                 <span className='side-navbar__in-card-number'>
                   {countItemsInCurrentShoppingList}

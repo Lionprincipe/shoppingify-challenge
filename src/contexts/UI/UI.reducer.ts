@@ -55,6 +55,15 @@ export const UIReducer = produce(
         })
         break
       }
+      case UIActionsTypes.SET_MOBILE_DEFAULT_SIDEBAR_HISTORY: {
+        state.UI.onScreenDefault = null
+        break
+      }
+      case UIActionsTypes.SET_DESKTOP_DEFAULT_SIDEBAR_HISTORY: {
+        state.UI.onScreenDefault =
+          RightSideBarScreenNames.SHOW_CURRENT_SHOPPING_LIST
+        break
+      }
 
       default:
         return state

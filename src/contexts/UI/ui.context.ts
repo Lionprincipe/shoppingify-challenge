@@ -11,7 +11,7 @@ export interface UIContextType {
   UI: {
     modals: ModalDataType[]
     onScreenHistory: OnScreenHistoryType[]
-    onScreenDefault: RightSideBarScreenNames
+    onScreenDefault: RightSideBarScreenNames | null
   }
   dispatch: UIDispatchType
 }

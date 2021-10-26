@@ -1,6 +1,14 @@
 import { ModalDataType, RightSideBarScreenNames } from '../../types'
 import { UIActionsTypes, UIDispatchType } from './UI.actionType'
 
+export const setMobileDefaultSideBarHistoryAction =
+  (dispatch: UIDispatchType) => () =>
+    dispatch({ type: UIActionsTypes.SET_MOBILE_DEFAULT_SIDEBAR_HISTORY })
+
+export const setDesktopDefaultSideBarHistoryAction =
+  (dispatch: UIDispatchType) => () =>
+    dispatch({ type: UIActionsTypes.SET_DESKTOP_DEFAULT_SIDEBAR_HISTORY })
+
 export const flushSidebarHistory = (dispatch: UIDispatchType) => () =>
   dispatch({ type: UIActionsTypes.FLUSH_SIDEBAR_HISTORY })
 

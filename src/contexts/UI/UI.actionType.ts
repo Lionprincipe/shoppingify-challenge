@@ -8,10 +8,24 @@ export enum UIActionsTypes {
   SHOW_ITEM_DETAILS = 'SHOW_ITEM_DETAILS',
   SHOW_CURRENT_SHOPPING_LIST = 'SHOW_CURRENT_SHOPPING_LIST',
   GO_BACK_SIDEBAR_HISTORY = 'GO_BACK_SIDEBAR_HISTORY',
+  SET_MOBILE_DEFAULT_SIDEBAR_HISTORY = 'SET_MOBILE_DEFAULT_SIDEBAR_HISTORY',
+  SET_DESKTOP_DEFAULT_SIDEBAR_HISTORY = 'SET_DESKTOP_DEFAULT_SIDEBAR_HISTORY',
+  DISPLAY_SHOPPING_LIST_CARD = ' DISPLAY_SHOPPING_LIST_CARD',
 }
 
 interface FlushSidebarHistoryAction {
   type: UIActionsTypes.FLUSH_SIDEBAR_HISTORY
+}
+interface DisplayShoppingListCardAction {
+  type: UIActionsTypes.DISPLAY_SHOPPING_LIST_CARD
+}
+
+interface SetDesktopDefaultSidebarHistoryAction {
+  type: UIActionsTypes.SET_DESKTOP_DEFAULT_SIDEBAR_HISTORY
+}
+
+interface SetMobileDefaultSidebarHistoryAction {
+  type: UIActionsTypes.SET_MOBILE_DEFAULT_SIDEBAR_HISTORY
 }
 
 interface RemoveModalAction {
@@ -53,14 +67,8 @@ export type UIActionType =
   | AddModalAction
   | RemoveModalAction
   | FlushSidebarHistoryAction
-// export interface UIPayloadType {
-//   screenName: RightSideBarScreenNames
-//   options?: { categoryId: string; itemId: string }
-// }
-
-// export type UIDispatchType = React.Dispatch<{
-//   type: UIActionsTypes
-//   payload: UIPayloadType
-// }>
+  | SetMobileDefaultSidebarHistoryAction
+  | SetDesktopDefaultSidebarHistoryAction
+  | DisplayShoppingListCardAction
 
 export type UIDispatchType = React.Dispatch<UIActionType>

@@ -33,9 +33,109 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 600px) {
   .layout__right-sidebar {
     display: none;
+  }
+
+  .layout__right-sidebar--active {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - var(--left-side-mobile-size));
+    margin-left: auto;
+    height: 100%;
+  }
+
+  .layout__right-sidebar--active .layout__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .layout__right-sidebar--active .card-list__wrapper {
+    max-width: var(--right-side-desktop-size);
+    padding-top: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin: 0 auto;
+    height: fit-content;
+  }
+
+  .layout__right-sidebar--active .card-list__container,
+  .layout__right-sidebar--active .add-item__container,
+  .layout__right-sidebar--active .item-details__wrapper {
+    height: fit-content;
+    min-height: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1280px) {
+  .layout__main-content__wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .layout__main-content__wrapper--mobile-activate .items-container {
+    width: fit-content;
+  }
+
+  .layout__main-content__wrapper--mobile-activate {
+    min-width: calc(
+      100% -
+        calc(var(--right-side-desktop-size) + var(--left-side-desktop-size))
+    );
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .layout__right-sidebar {
+    display: none;
+  }
+
+  .layout__right-sidebar--active {
+    display: flex;
+    justify-content: center;
+    width: var(--right-side-desktop-size);
+    margin-left: auto;
+    height: 100%;
+  }
+
+  .layout__right-sidebar--active .layout__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .layout__right-sidebar--active .card-list__wrapper {
+    max-width: var(--right-side-desktop-size);
+    padding-top: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin: 0 auto;
+    height: fit-content;
+  }
+
+  .layout__right-sidebar--active .add-item__container,
+  .layout__right-sidebar--active .item-details__wrapper {
+    height: fit-content;
+    min-height: 100%;
+    width: 100%;
+  }
+
+  .layout__right-sidebar__mobile__overlay {
+    display: none;
+  }
+
+  .layout__right-sidebar__mobile__overlay--active {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -49,7 +149,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1281px) {
   .layout__container {
     padding-right: var(--right-side-desktop-size);
   }
