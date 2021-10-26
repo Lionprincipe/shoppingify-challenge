@@ -15,7 +15,7 @@
 .layout__right-sidebar {
   width: var(--right-side-desktop-size);
   overflow-x: scroll;
-  min-height: 500px;
+  min-height: 600px;
   height: 100%;
   position: fixed;
   right: 0;
@@ -107,9 +107,6 @@
 
   .layout__right-sidebar--active .card-list__wrapper {
     max-width: var(--right-side-desktop-size);
-    padding-top: 24px;
-    padding-left: 14px;
-    padding-right: 14px;
     margin: 0 auto;
     height: fit-content;
   }
